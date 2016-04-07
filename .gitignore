@@ -1,5 +1,7 @@
-node_modules
+/node_modules
 *.log
 stats.json
 npm-debug.log
 public/assets
+/*.env
+.DS_Store
