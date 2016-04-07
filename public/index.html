@@ -2,21 +2,22 @@
 <html>
 <head>
 
-  <!-- $location in HTML5 mode requires a <base> tag to be present -->
-  <base href="/" />
   <style>
     body {
       background-color: lightgray
     }
     </style>
 
-  
 </head>
 <body ng-app="myApp">
 
   <div ng-view></div>
 
-  <script src="/assets/bundle.js"></script>
-
+  <script src="../node_modules/angular/angular.min.js"></script>
+  <script src="../node_modules/angular/angular-route.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/search/search.service.js"></script>
+  <script src="js/search/search.controller.js"></script>
+  
 </body>
 </html>
