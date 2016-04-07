@@ -12,8 +12,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/codeLlama');
 
 var app = express();
-app.set('views', __dirname + '/../views');
-app.set('view engine', 'ejs');
+// app.set('views', __dirname + '/../views');
+// app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
   extended: true
