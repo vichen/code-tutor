@@ -8,8 +8,6 @@ var express = require('express'),
   methodOverride = require('method-override'),
   errorHandler = require('express-error-handler'),
   morgan = require('morgan'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
   http = require('http'),
   path = require('path');
 
