@@ -1,13 +1,24 @@
 var Q = require('q');
 var jwt = require('jwt-simple');
-var Tutor = require('./tutorModel.js');
-
+var User = require('./userModel.js');
 
 // Promisify a few mongoose methods with the `q` promise library
-var findUser = Q.nbind(Tutor.findOne, Tutor);
-var createUser = Q.nbind(Tutor.create, Tutor);
+var findUser = Q.nbind(User.findOne, User);
+var createUser = Q.nbind(User.create, User);
 
 module.exports = {
+
+  findTutor: function(req, res, nex) {
+    findUser({name: req.params.name, isTutor: true})
+      .then(function(tutor) {
+        if (!tutor) {
+          next( new Error('Invalid tutor'));
+        } else {
+          res.send(tutor); 
+        }
+      });
+  },
+
   signin: function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;

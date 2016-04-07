@@ -1,23 +1,19 @@
-var db = require('../config');
-var crypto = require('crypto');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Q = require('q');
 
-var tutorSchema = mongoose.Schema({
+var userSchema = new mongoose.Schema({
   name: String,
   loc: String, //TODO: find out what type this should be for GeoJSON
   likes: Number,
   email: String,
-  password: String // hash and salt password...
-  // subjects: {
-    
-  // } // ??? do we store in a different table??
+  password: String, // hash and salt password...
+  location: Object,
+  isTutor: Boolean
 });
 
-var Tutor = mongoose.model('Tutor', tutorSchema);
 
-Tutor.methods.comparePasswords = function (candidatePassword) {
+userSchema.methods.comparePasswords = function (candidatePassword) {
   var savedPassword = this.password;
   return Q.Promise(function (resolve, reject) {
     bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
@@ -30,7 +26,7 @@ Tutor.methods.comparePasswords = function (candidatePassword) {
   });
 };
 
-Tutor.pre('save', function (next) {
+userSchema.pre('save', function (next) {
   var user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -58,5 +54,4 @@ Tutor.pre('save', function (next) {
   });
 });
 
-
-module.exports = Tutor;
+module.exports = mongoose.model('User', userSchema);

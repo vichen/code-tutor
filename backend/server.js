@@ -7,6 +7,10 @@ var errorHandler = require('express-error-handler');
 var morgan = require('morgan');
 var proxy = httpProxy.createProxyServer();
 
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/codeLlama');
+
 var app = express();
 app.set('views', __dirname + '/../views');
 app.set('view engine', 'ejs');
@@ -33,21 +37,12 @@ if (!isProduction) {
   });
 }
 
-
+// serve static assets from here
 app.use(express.static(publicPath));
 
-// place your handlers here
+//set up routes here from routes file
+require('./routes')(app, express);
 
-app.get('/', function(req, res) {
-    res.render('pages/index');
-});
-app.get('/about', function(req, res) {
-    res.render('pages/about');
-});
-
-app.get('*',  function(req, res) {
-    res.render('pages/about');
-});
 // It is important to catch any errors from the proxy or the
 // server will crash. An example of this is connecting to the
 // server when webpack is bundling
@@ -58,3 +53,4 @@ proxy.on('error', function(e) {
 app.listen(port, function () {
   console.log('Server running on port ' + port);
 });
+
