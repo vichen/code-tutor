@@ -23,7 +23,7 @@ var app = module.exports = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -50,14 +50,27 @@ if (env === 'production') {
  */
 
 // serve index and view partials
-app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.get('/', function(req, res) {
+    res.render('pages/index');
+});
 
-// JSON API
-app.get('/api/name', api.name);
+// about page 
+app.get('/about', function(req, res) {
+    res.render('pages/about');
+});
 
-// redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+// app.get('/partials/:name', routes.partials);
+
+// // JSON API
+// app.get('/api/name', api.name);
+
+// // redirect all others to the index (HTML5 history)
+// app.get('*', routes.index);
+
+
+app.get('*',  function(req, res) {
+    res.render('pages/about');
+});
 
 
 /**
