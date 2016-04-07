@@ -8,6 +8,8 @@ var express = require('express'),
   methodOverride = require('method-override'),
   errorHandler = require('express-error-handler'),
   morgan = require('morgan'),
+  routes = require('./routes'),
+  api = require('./routes/api'),
   http = require('http'),
   path = require('path');
 
@@ -21,7 +23,7 @@ var app = module.exports = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -48,27 +50,14 @@ if (env === 'production') {
  */
 
 // serve index and view partials
-app.get('/', function(req, res) {
-    res.render('pages/index');
-});
+app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
 
-// about page 
-app.get('/about', function(req, res) {
-    res.render('pages/about');
-});
+// JSON API
+app.get('/api/name', api.name);
 
-// app.get('/partials/:name', routes.partials);
-
-// // JSON API
-// app.get('/api/name', api.name);
-
-// // redirect all others to the index (HTML5 history)
-// app.get('*', routes.index);
-
-
-app.get('*',  function(req, res) {
-    res.render('pages/about');
-});
+// redirect all others to the index (HTML5 history)
+app.get('*', routes.index);
 
 
 /**
