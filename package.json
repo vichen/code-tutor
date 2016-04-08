@@ -10,7 +10,6 @@
   "dependencies": {
     "angular": "^1.4.1",
     "angular-ui-router": "^0.2.15",
-    "bcrypt": "^0.8.5",
     "body-parser": "^1.0.2",
     "ejs": "^2.4.1",
     "error-handler": "^0.1.4",
