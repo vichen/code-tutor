@@ -22,6 +22,15 @@ module.exports = {
     });
   },
 
+  getTutor: function(req, res, nex) {
+    User.find({username: req.params.name})
+      .then(function(username) {
+        if (err) { new Error("User does not exist")}
+          //
+      })
+    });
+  },
+
   findTutor: function(req, res, nex) {
     findUser({name: req.params.name, isTutor: true})
       .then(function(tutor) {

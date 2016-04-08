@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Q = require('q');
 
 var userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
   name: String,
   loc: String, //TODO: find out what type this should be for GeoJSON
   likes: Number,
