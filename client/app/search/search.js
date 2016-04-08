@@ -1,10 +1,23 @@
-(function() {
-  
-  'use strict';
 
-  /* Controllers */ 
+angular.module('codellama.search', [])
 
-  angular.module('myApp') 
+  .service('SearchService', function($http) {
+
+    // TODO: figure out which query to search by
+    this.getTutors = function(query) {
+
+      // TODO: make sure to get api url from server side
+      // make GET request to api (db) to get tutor data array
+      return $http({
+        method: 'GET',
+        url: '/api/tutors/all'
+      })
+      .then(function (resp) {
+        console.log(resp.data);
+        return resp.data;
+      });
+    };
+  })
 
   .controller('SearchController', function ($scope, SearchService) {
 
@@ -31,4 +44,5 @@
 
   });
 })();
+
 
