@@ -38,11 +38,10 @@ angular.module('codellama.search', [])
         // on error, console log error
         .catch(function(error) {
           console.log('There was an error retrieving tutor data: ', error);
-        })
-    }
+        });
+    };
      
 
   });
-})();
 
 
