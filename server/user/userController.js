@@ -11,6 +11,7 @@ var gfs = Grid(mongoose.connection);
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
+var updateUser = Q.bind(User.update, User);
 
 module.exports = {
 
@@ -32,20 +33,40 @@ module.exports = {
       });
   },
 
-  uploadPhoto: function(req, res) {
-    // streaming to gridfs
-    //filename to store in mongodb
-    var writestream = gfs.createWriteStream({
-      filename: req.files.displayImage.name
-    });
+  saveProfile: function(req, res) {
+    //user has been authenticated 
 
-    fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+    //find the user in the the db
+    var email = req.body.email;
 
-    writestream.on('close', function (file) {
-      // do something with `file`
-      console.log('Photo written To DB');
-      res.redirect('back');
-    });
+    if (req.files.displayImage) {
+      //keep a reference tothe image in the user entry
+      req.body.imageLink = req.files.displayImage.name;
+
+      var writestream = gfs.createWriteStream({
+        filename: req.files.displayImage.name
+      });
+
+      fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+
+      writestream.on('close', function (file) {
+        // do something with `file`
+        console.log('Photo written To DB');
+        res.redirect('back');
+      });
+
+    }
+
+    //find and update user
+    findUser({email: email})
+      .then(function(user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          return updateUser(req.body);
+        }
+      });
+
   },
 
   signin: function (req, res, next) {
