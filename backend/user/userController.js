@@ -1,6 +1,12 @@
 var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
+var Grid = require('gridfs-stream');
+
+var mongoose = require('mongoose');
+Grid.mongo = mongoose.mongo;
+var gfs = Grid(mongoose.connection);
+
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
@@ -17,6 +23,22 @@ module.exports = {
           res.send(tutor); 
         }
       });
+  },
+
+  uploadPhoto: function(req, res) {
+    // streaming to gridfs
+    //filename to store in mongodb
+    var writestream = gfs.createWriteStream({
+        filename: req.files.displayImage.name
+    });
+
+    fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+
+    writestream.on('close', function (file) {
+        // do something with `file`
+        console.log('Photo written To DB');
+        res.redirect("back");
+    });
   },
 
   signin: function (req, res, next) {
