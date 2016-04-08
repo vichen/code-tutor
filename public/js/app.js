@@ -1,4 +1,19 @@
-(function() {
+(function() { 
+
+  // import angular from 'angular'
+  // import 
+
+  // var angular = require('angular')
+
+
+  // <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+  // <script src="../node_modules/angular/angular.min.js"></script>
+  // <script src="../node_modules/angular/angular-route.min.js"></script>
+  // <script src="js/app.js"></script>
+  // <script src="js/search/search.service.js"></script>
+  // <script src="js/search/search.controller.js"></script>
+
+
 
 'use strict';
 
