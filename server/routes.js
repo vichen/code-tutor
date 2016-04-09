@@ -16,7 +16,7 @@ module.exports = function (app, express) {
 
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
-  app.post('/api/users/search', userController.search);
+  app.post('/api/tutor/search', userController.search);
   app.post('/api/tutor/profile', userController.saveProfile);
   app.post('/api/tutor/update', userController.updateProfile);
 
