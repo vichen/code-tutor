@@ -11,7 +11,7 @@ var gfs = Grid(mongoose.connection);
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
 var createUser = Q.nbind(User.create, User);
-var updateUser = Q.bind(User.update, User);
+var updateUser = Q.nbind(User.findOneAndUpdate, User);
 
 module.exports = {
 
@@ -62,33 +62,28 @@ module.exports = {
     //find the user in the the db
     var email = req.body.email;
 
-    if (req.files.displayImage) {
-      //keep a reference tothe image in the user entry
-      req.body.imageLink = req.files.displayImage.name;
+    // if (req.files) {
+    //   console.log('shouldnot be ehre')
+    //   //keep a reference tothe image in the user entry
+    //   req.body.imageLink = req.files.displayImage.name;
 
-      var writestream = gfs.createWriteStream({
-        filename: req.files.displayImage.name
-      });
+    //   var writestream = gfs.createWriteStream({
+    //     filename: req.files.displayImage.name
+    //   });
 
-      fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+    //   fs.createReadStream(req.files.displayImage.path).pipe(writestream);
 
-      writestream.on('close', function (file) {
-        // do something with `file`
-        console.log('Photo written To DB');
-        res.redirect('back');
-      });
+    //   writestream.on('close', function (file) {
+    //     // do something with `file`
+    //     console.log('Photo written To DB');
+    //     res.redirect('back');
+    //   });
 
-    }
+    // }
 
     //find and update user
-    findUser({email: email})
-      .then(function(user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          return updateUser(req.body);
-        }
-      });
+    
+    return updateUser({email: email}, req.body);
 
   },
 
@@ -120,6 +115,7 @@ module.exports = {
   signup: function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
+    var username = req.body.username;
 
     // check to see if user already exists
     findUser({email: email})
@@ -129,6 +125,7 @@ module.exports = {
         } else {
           // make a new user if not one
           return createUser({
+            username: username,
             email: email,
             password: password
           });

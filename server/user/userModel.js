@@ -4,12 +4,10 @@ var Q = require('q');
 var SALT_WORK_FACTOR = 10; 
 
 var userSchema = new mongoose.Schema({
-  // username: { type: String, required: true, unique: true },
-  username: String,
+  username: {type: String, required: true, unique: true},
   name: String,
   likes: Number,
-  // email: { type: String, required: true, unique: true },
-  email: String,
+  email: {type: String, required: true, unique: true},
   password: String, // hash and salt password...
   location: Object,
   address: Object,
