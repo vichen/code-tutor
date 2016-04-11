@@ -10,5 +10,9 @@
     state: 'CA'
   },
   isTutor: false
+  subjects: {
+    javascript: true,
+    haskell: false
+  }
 
 }
