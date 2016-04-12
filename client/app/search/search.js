@@ -3,6 +3,9 @@ angular.module('codellama.search', [])
 
   .service('SearchService', function($http) {
 
+    // initialize empty tutor data array that will hold search results
+    this.tutorData = [];
+
     // TODO: figure out which query to search by
     this.getTutors = function() {
 
@@ -19,10 +22,10 @@ angular.module('codellama.search', [])
     };
   })
 
-  .controller('SearchController', function ($scope, SearchService) {
+  .controller('SearchController', function ($scope, SearchService, $location) {
 
     // initialize empty tutor data array that will hold search results
-    $scope.tutorData = [];
+    // $scope.tutorData = [];
 
     // define search on scope
     $scope.search = function() {
@@ -32,7 +35,8 @@ angular.module('codellama.search', [])
 
         // upon success, assign returned tutors data to scope's tutorData
         .then(function(tutors) {
-          $scope.tutorData = tutors;
+          SearchService.tutorData = tutors;
+          $location.path('/search');
         })
 
         // on error, console log error
@@ -40,7 +44,13 @@ angular.module('codellama.search', [])
           console.log('There was an error retrieving tutor data: ', error);
         });
     };
-     
+  })
+
+  .controller('SearchResultsController', function ($scope, SearchService) {
+
+    $scope.tutorData = SearchService.tutorData;
+    console.log(SearchService.tutorData);
+    console.log('$search results scope.tutorData:', $scope.tutorData);
 
   });
 

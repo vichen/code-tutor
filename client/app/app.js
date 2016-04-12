@@ -1,16 +1,27 @@
 
   angular.module('codellama', [
-    'codellama.tutor', 
-    'codellama.search', 
+    'codellama.tutor',
+    'codellama.search',
     'ngRoute'])
 
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/search', {
-        templateUrl: 'app/search/searchResults.html',
+      .when('/', {
+        templateUrl: 'app/homepage/home.html',
         controller: 'SearchController'
-      });
-
+      })
+      .when('/search', {
+        templateUrl: 'app/search/searchResults.html'
+      })
+      ;
+      // .when('/signup', {
+      //   templateUrl: '',
+      //   controller: ''
+      // })
+      // .when('/login', {
+      //   templateUrl: '',
+      //   controller: ''
+      // })
       // .when('/view1', {
       //   templateUrl: 'partials/partial1',
       //   controller: 'MyCtrl1'
