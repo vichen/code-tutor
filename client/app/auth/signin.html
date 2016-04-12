@@ -1,0 +1,16 @@
+<div ng-controller='AuthController'>
+  <ul>
+    <li ng-repeat='data in dummyData'>
+      {{ data }}
+    </li>
+  </ul>
+</div>
+<form name="signinForm" ng-submit="signin()">
+  <label>Email:
+    <input type="text" ng-model='user.email'>
+  </label>
+  <label>Password:
+    <input type="password" ng-model='user.password'>
+  </label>
+  <button>signin</button>
+</form>

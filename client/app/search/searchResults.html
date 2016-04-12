@@ -1,8 +1,14 @@
-<div id="searchResults" ng-repeat="tutor in tutors">
+<div ng-controller='SearchResultsController'>
+<div ng-repeat="tutor in tutorData">
+
+  <!--
   <a ng-href="/tutor/{{tutor.id}}">
   <h5>{{tutor.name}}</h5>
     <img ng-src="{{tutor.img}}">
   </a>
   <span>Knows: {{tutor.subjects}}</span><br>
   <span>City: {{tutor.location}}</span><br>
+-->
+<p> {{ tutor.username }} </p>
+</div>
 </div>
