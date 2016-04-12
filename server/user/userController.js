@@ -23,12 +23,13 @@ module.exports = {
   },
 
   getTutor: function(req, res, nex) {
-    User.find({username: req.params.name}, function(err, user) {
+    User.find({username: req.params.username}, function(err, user) {
       res.send(user);
     });
 
     // extract image link
-    // send image back with POST
+    // send image back with POST??
+    // read image from user.imageLink...
 
     //write content to file system
         // var fs_write_stream = fs.createWriteStream('write.txt');
@@ -42,6 +43,17 @@ module.exports = {
         //  console.log('file has been written fully!');
         // });
 
+        //another implementation
+        // var readstream = gridfs.createReadStream({
+        //   _id: req.params.fileId
+        // });
+        // req.on('error', function(err) {
+        //   res.send(500, err);
+        // });
+        // readstream.on('error', function (err) {
+        //   res.send(500, err);
+        // });
+        // readstream.pipe(res);
 
   },
 
@@ -60,31 +72,30 @@ module.exports = {
     //user has been authenticated 
 
     //find the user in the the db
-    var email = req.body.email;
+    var username = req.body.username;
 
-    // if (req.files) {
-    //   console.log('shouldnot be ehre')
-    //   //keep a reference tothe image in the user entry
-    //   req.body.imageLink = req.files.displayImage.name;
+    if (req.files) {
+      //keep a reference tothe image in the user entry
+      req.body.imageLink = req.files.displayImage.name;
 
-    //   var writestream = gfs.createWriteStream({
-    //     filename: req.files.displayImage.name
-    //   });
+      var writestream = gfs.createWriteStream({
+        filename: req.files.displayImage.name
+      });
 
-    //   fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+      fs.createReadStream(req.files.displayImage.path).pipe(writestream);
 
-    //   writestream.on('close', function (file) {
-    //     // do something with `file`
-    //     console.log('Photo written To DB');
-    //     res.redirect('back');
-    //   });
-
-    // }
-
-    //find and update user
+      writestream.on('close', function (file) {
+        // do something with `file`
+        console.log('Photo written To DB');
+        res.redirect('back');
+      });
+    }
     
-    return updateUser({email: email}, req.body);
-
+    updateUser({username: username}, req.body, {new: true}, function(err, doc) {
+      if (!err) {
+        res.send(doc);
+      }
+    });
   },
 
   signin: function (req, res, next) {
