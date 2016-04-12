@@ -1,30 +1,57 @@
 
 angular.module('codellama.auth', [])
 
-.controller('AuthController', function($scope, $window, $location, $http) {
-  $scope.dummyData = ['hi', 'I am', 'Fred'];
-  // we want form submit to ... connect to backend ... with email & password
-  //
-  $scope.user = {};
-  var user = $scope.user;
-
-  $scope.signin = function() {
+.factory('AuthService', function ($http, $location, $window) {
+  var signin = function(user) {
     return $http({
       method: 'POST',
       url: '/api/users/signin/',
-      data: $scope.user
+      data: user
     })
     .then(function (res) {
       $window.localStorage.setItem('com.codeLlama', res.data.token);
-      console.dir($window.localStorage);
       $location.path('/'); // do we want it to redirect to home?
     })
     .catch(function (error) {
       console.error(error);
     });
-
-
   };
 
+  var signup = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup/',
+      data: user
+    })
+    .then(function (res) {
+      $window.localStorage.setItem('com.codeLlama', res.data.token);
+      console.log('signup worked');
+      $location.path('/'); // do we want it to redirect to home?
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  };
 
+  return {
+    signin: signin,
+    signup: signup
+  };
+
+})
+
+.controller('AuthController', function($scope, AuthService) {
+  $scope.dummyData = ['hi', 'I am', 'Fred'];
+  // we want form submit to ... connect to backend ... with email & password
+  //
+  $scope.user = {};
+  // var user = $scope.user;
+
+  $scope.signin = function() {
+    AuthService.signin($scope.user);
+  };
+
+  $scope.signup = function() {
+    AuthService.signup($scope.user);
+  };
 });
