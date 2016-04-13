@@ -8,7 +8,9 @@ module.exports = function (app, express) {
   // app.get('/', function(req, res) {
   //   res.sendFile(path.join(__dirname, '/../public', 'index.html'));
   // });
-  
+   
+  app.post('api/users/profile', userController.saveProfile);
+  app.post('api/users/profilePic', userController.saveProfilePic);
 
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
@@ -18,11 +20,6 @@ module.exports = function (app, express) {
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
 
-  // app.use('/api/users/profile', helpers.decode);
-  app.post('/api/users/profile', userController.saveProfile);
-  // app.post('/api/tutor/update', userController.updateProfile);
-
-  
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
   app.use(helpers.errorLogger);

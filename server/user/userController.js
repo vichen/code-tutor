@@ -90,32 +90,20 @@ module.exports = {
   },
 
   saveProfile: function(req, res) {
-    //user has been authenticated 
-
-    //find the user in the the db
-    var username = req.body.username;
-
-    if (req.files) {
-      //keep a reference tothe image in the user entry
-      req.body.imageLink = req.files.displayImage.name;
-
-      var writestream = gfs.createWriteStream({
-        filename: req.files.displayImage.name
-      });
-
-      fs.createReadStream(req.files.displayImage.path).pipe(writestream);
-
-      writestream.on('close', function (file) {
-        // do something with `file`
-        console.log('Photo written To DB');
-        res.redirect('back');
-      });
-    }
-    
-    updateUser({username: username}, req.body, {new: true}, function(err, doc) {
+    updateUser({username: req.body.username}, req.body, {new: true}, function(err, doc) {
       if (!err) {
         res.send(doc);
       }
+    });
+  },
+
+  saveProfilePic: function(req, res) {
+    fs.readFile(req.files.profilePic.path, function (err, data) {
+      // ...
+      var newPath = __dirname + "/uploads/uploadedFileName";
+      fs.writeFile(newPath, data, function (err) {
+        res.redirect("back");
+      });
     });
   },
 

@@ -3,6 +3,7 @@
     'codellama.tutor',
     'codellama.search',
     'codellama.auth',
+    'codellama.fileUpload',
     'ngRoute'])
 
   .config(function ($routeProvider, $locationProvider) {
@@ -24,6 +25,10 @@
       .when('/login', {
         templateUrl: 'app/auth/signin.html',
         controller: 'AuthController'
+      })
+      .when('/profile', {
+        templateUrl: 'app/profile/profile.html',
+        controller: 'uploadCtrl'
       })
 
       .otherwise({
