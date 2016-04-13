@@ -9,7 +9,7 @@
     city: 'san francisco',
     state: 'CA'
   },
-  isTutor: false
+  isTutor: false,
   subjects: {
     javascript: true,
     haskell: false

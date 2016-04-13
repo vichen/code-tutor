@@ -7,13 +7,14 @@ angular.module('codellama.search', [])
     this.tutorData = [];
 
     // TODO: figure out which query to search by
-    this.getTutors = function() {
-
+    this.getTutors = function(city, subjects) {
+      parsedCity = city.replace(/\ /, '+');
+      parsedSubjects = subjects.replace(/\ /g, '+');
       // TODO: make sure to get api url from server side
       // make GET request to api (db) to get tutor data array
       return $http({
         method: 'GET',
-        url: '/api/tutor/all'
+        url: '/api/search?city=' + parsedCity + '&subjects=' + parsedSubjects
       })
       .then(function (resp) {
         console.log(resp.data);
@@ -28,10 +29,10 @@ angular.module('codellama.search', [])
     // $scope.tutorData = [];
 
     // define search on scope
-    $scope.search = function() {
+    $scope.search = function(city, subjects) {
 
       // call function from SearchService
-      SearchService.getTutors()
+      SearchService.getTutors(city, subjects)
 
         // upon success, assign returned tutors data to scope's tutorData
         .then(function(tutors) {

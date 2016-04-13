@@ -13,7 +13,8 @@
         templateUrl: 'app/homepage/home.html',
       })
       .when('/search', {
-        templateUrl: 'app/search/searchResults.html'
+        templateUrl: 'app/search/searchResults.html',
+        // controller: 'SearchController'
       })
 
       .when('/signup', {
