@@ -17,7 +17,7 @@ module.exports = {
 
   //temporary testing controller
   getAllTutors: function(req, res, nex) {
-    User.find({}, function(err, users) {
+    User.find({isTutor: true}, function(err, users) {
       res.send(users);  
     });
   },
@@ -138,7 +138,8 @@ module.exports = {
           return createUser({
             username: username,
             email: email,
-            password: password
+            password: password,
+            isTutor: false
           });
         }
       })
