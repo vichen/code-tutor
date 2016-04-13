@@ -68,6 +68,24 @@ module.exports = {
       });
   },
 
+  search: function (req, res, next) {
+    var cityUrl = req.query.city;
+    var subjectsUrl = req.query.subjects;
+
+    var city = cityUrl.replace(/\+/g, ' ');
+    var subjectsString = subjectsUrl.replace(/\+/g, ' ');
+
+    var subjects = subjectsString.split(/\s+/);
+
+    findSome({'$or': [{ 'subjects': { '$in': subjects } }, { 'city': city }] })
+    .then(function(users) {
+      res.status(200).send(users);
+    })
+    .catch(function(err) {
+      console.log ('Error: ', err);
+    });
+  },
+
   saveProfile: function(req, res) {
     //user has been authenticated 
 
