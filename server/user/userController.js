@@ -10,6 +10,7 @@ var gfs = Grid(mongoose.connection);
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
+var findTutors = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 var updateUser = Q.nbind(User.findOneAndUpdate, User);
 
@@ -72,12 +73,15 @@ module.exports = {
     var cityUrl = req.query.city;
     var subjectsUrl = req.query.subjects;
 
+    console.log('cityUrl ', cityUrl);
+    console.log('subjectsUrl ', subjectsUrl);
+
     var city = cityUrl.replace(/\+/g, ' ');
-    var subjectsString = subjectsUrl.replace(/\+/g, ' ');
+    var subjectsString = subjectsUrl.replace(/\+/g, ' ').replace(/\,\ /g, ',');
 
-    var subjects = subjectsString.split(/\s+/);
+    var subjects = subjectsString.split(',');
 
-    findSome({'$or': [{ 'subjects': { '$in': subjects } }, { 'city': city }] })
+    findTutors({'city': city, 'subjects': { '$in': subjects }, isTutor: true })
     .then(function(users) {
       res.status(200).send(users);
     })
@@ -145,6 +149,9 @@ module.exports = {
     var email = req.body.email;
     var password = req.body.password;
     var username = req.body.username;
+    var isTutor = req.body.isTutor;
+    var location = req.body.location;
+    var subjects = req.body.subjects;
 
     // check to see if user already exists
     findUser({email: email})
@@ -157,7 +164,9 @@ module.exports = {
             username: username,
             email: email,
             password: password,
-            isTutor: false
+            isTutor: isTutor,
+            location: location,
+            subjects: subjects
           });
         }
       })

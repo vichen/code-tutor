@@ -12,7 +12,7 @@ module.exports = function (app, express) {
 
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
-  app.get('/tutor/:username', userController.findTutor);
+  app.get('/api/tutor/:username', userController.findTutor);
   app.get('/api/tutor/search', userController.search);
 
   app.post('/api/users/signup', userController.signup);
