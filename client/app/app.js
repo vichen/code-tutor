@@ -9,7 +9,6 @@
     $routeProvider
       .when('/', {
         templateUrl: 'app/homepage/home.html',
-        controller: 'SearchController'
       })
       .when('/search', {
         templateUrl: 'app/search/searchResults.html'
