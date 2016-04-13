@@ -7,7 +7,7 @@
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/search', {
-        templateUrl: 'app/search/searchResults.html',
+        templateUrl: './search/searchResults.html',
         controller: 'SearchController'
       });
 
