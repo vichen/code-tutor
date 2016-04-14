@@ -10,9 +10,9 @@
     state: 'CA'
   },
   isTutor: false,
-  subjects: {
-    javascript: true,
-    haskell: false
-  }
+  subjects: [
+    'javascript',
+    'angular'
+  ]
 
 }
