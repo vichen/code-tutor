@@ -5,6 +5,7 @@
     'codellama.search',
     'codellama.auth',
     'codellama.fileUpload',
+    'codellama.nav',
     'ngRoute'])
 
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -15,7 +16,7 @@
       })
       .when('/search', {
         templateUrl: 'app/search/searchResults.html',
-        // controller: 'SearchController'
+        controller: 'SearchController'
       })
 
       .when('/signup', {
@@ -68,6 +69,11 @@
       return attach;
     })
     .run(function ($rootScope, $location, Auth) {
+
+      $rootScope.loggedIn = Auth.isLoggedIn();
+      $rootScope.loggedInAndTutor = Auth.isLoggedInAndTutor();
+      $rootScope.loggedInNotTutor = Auth.isLoggedInButNotTutor();
+
       // here inside the run phase of angular, our services and controllers
       // have just been registered and our app is ready
       // however, we want to make sure the user is authorized
@@ -75,9 +81,9 @@
       // when it does change routes, we then look for the token in localstorage
       // and send that token to the server to see if it is a real user or hasn't expired
       // if it's not valid, we then redirect back to signin/signup
-      $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-        if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-          $location.path('/signin');
-        }
-      });
+      // $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+      //   if (next.$$route && next.$$route.authenticate && !Auth.isLoggedIn()) {
+      //     $location.path('/signin');
+      //   }
+      // });
     });
