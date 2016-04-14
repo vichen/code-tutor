@@ -24,8 +24,18 @@ angular.module('codellama.services', [])
     });
   };
 
-  var isAuth = function () {
+  /* Update logged-in and is-tutor status with these functions*/
+
+  var isLoggedIn = function () {
     return !!$window.localStorage.getItem('com.codellama');
+  };
+
+  var isLoggedInAndTutor = function() {
+    return isLoggedIn() && $window.localStorage.getItem('isTutor') !== 'false';
+  };
+
+  var isLoggedInButNotTutor = function() {
+    return isLoggedIn() && $window.localStorage.getItem('isTutor') !== 'true';
   };
 
   var signout = function () {
@@ -36,7 +46,9 @@ angular.module('codellama.services', [])
   return {
     signin: signin,
     signup: signup,
-    isAuth: isAuth,
+    isLoggedIn: isLoggedIn,
+    isLoggedInAndTutor: isLoggedInAndTutor,
+    isLoggedInButNotTutor: isLoggedInButNotTutor,
     signout: signout
   };
 
