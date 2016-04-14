@@ -1,13 +1,23 @@
 //inject angular file upload directives and services.
-var app = angular.module('codellama.fileUpload', ['ngFileUpload']);
+var app = angular.module('codellama.fileUpload', ['ngFileUpload', 'checklist-model']);
 
 app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+  $scope.roles = [
+    'javascript', 
+    'c', 
+    'python', 
+    'ruby'
+  ];
+  $scope.user = {
+    roles: []
+  };
+
   $scope.uploadPic = function(file) {
     if (!file) { var file = {}; }
     
     file.upload = Upload.upload({
       url: 'api/users/profile',
-      data: {name: $scope.name, email: $scope.email, bio: $scope.bio, file: file, isTutor: $scope.isTutor}
+      data: {name: $scope.name, email: $scope.email, bio: $scope.bio, file: file, isTutor: $scope.isTutor, languages: $scope.user.roles}
     });
 
     file.upload.then(function (response) {

@@ -1,15 +1,25 @@
 <body ng-controller="uploadCtrl">
   <form name="myForm">
     <fieldset>
+
       <br>Name:
       <input type="text" name="name" ng-model="name" size="31">
+
       <br>
       Email:
       <input type="text" name="email" ng-model="email" size="31">
+
       <br>Bio:
       <textarea type="textarea" name="bio" ng-model="bio" rows="10" cols="50"></textarea>
-      <br>Tutor:
+
+      <br>Are you a tutor?:
       <input type="checkbox" ng-model="isTutor">
+
+      <br>Languages:
+      <label ng-repeat="role in roles">
+        <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}
+      </label>
+
       <!-- <i ng-show="myForm.email.$error.required">*required</i> -->
       <br>Photo:
       <input type="file" ngf-select ng-model="picFile" name="file"    
@@ -28,6 +38,7 @@
       </span>
       <span ng-show="picFile.result">Upload Successful</span>
       <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+      
     </fieldset>
     <br>
   </form>
