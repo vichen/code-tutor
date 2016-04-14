@@ -70,16 +70,17 @@ module.exports = {
   },
 
   search: function (req, res, next) {
-    var city = req.query.city;
-    var subjects = req.query.subjects;
+    var city = req.query.city || 'San Francisco';
+    var subjectsArr = req.query.subjects ? req.query.subjects.split(',') : null;
 
-    console.log('Request queries: ', req.query);
+    var requirements = {
+      isTutor: true,
+      'location.city': city
+    }; 
 
-    var subjectsArr = subjects.split(',');
+    if (subjectsArr) { requirements.subjects = {$in: subjectsArr}; }
 
-    console.log('subjectsArr: ', subjectsArr);
-
-    findTutors({'location.city': city, 'subjects': { $in: subjectsArr }, 'isTutor': true })
+    findTutors(requirements)
     .then(function(users) {
       res.status(200).send(users);
     })
