@@ -3,21 +3,28 @@
     <fieldset>
 
       <br>Name:
-      <input type="text" name="name" ng-model="name" size="31">
+      <input type="text" name="name" ng-model="data.name" size="31">
 
       <br>
       Email:
-      <input type="text" name="email" ng-model="email" size="31">
+      <input type="text" name="email" ng-model="data.email" size="31">
+
+      <br>
+      City:
+      <select name="city" ng-model="data.location.city" required>
+        <option ng-repeat="city in cities" value={{city}}>{{city}}</option>
+      </select>
+      <i ng-show="myForm.city.$error.required">*required</i><br>
 
       <br>Bio:
-      <textarea type="textarea" name="bio" ng-model="bio" rows="10" cols="50"></textarea>
+      <textarea type="textarea" name="bio" ng-model="data.bio" rows="10" cols="50"></textarea>
 
       <br>Are you a tutor?:
-      <input type="checkbox" ng-model="isTutor">
+      <input type="checkbox" ng-model="data.isTutor">
 
       <br>Languages:
-      <label ng-repeat="role in roles">
-        <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}
+      <label ng-repeat="subject in subjects">
+        <input type="checkbox" checklist-model="data.subjects" checklist-value="subject"> {{subject}}
       </label>
 
       <!-- <i ng-show="myForm.email.$error.required">*required</i> -->
