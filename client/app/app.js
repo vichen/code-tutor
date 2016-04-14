@@ -6,13 +6,15 @@
     'ngRoute'])
 
   .config(function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
     $routeProvider
       .when('/', {
         templateUrl: 'app/homepage/home.html',
-        controller: 'SearchController'
       })
       .when('/search', {
-        templateUrl: 'app/search/searchResults.html'
+        templateUrl: 'app/search/searchResults.html',
+        // controller: 'SearchController'
       })
 
       .when('/signup', {

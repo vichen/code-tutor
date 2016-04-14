@@ -9,10 +9,10 @@
     city: 'san francisco',
     state: 'CA'
   },
-  isTutor: false
-  subjects: {
-    javascript: true,
-    haskell: false
-  }
+  isTutor: false,
+  subjects: [
+    'javascript',
+    'angular'
+  ]
 
 }

@@ -10,6 +10,7 @@ var gfs = Grid(mongoose.connection);
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
+var findTutors = Q.nbind(User.find, User);
 var createUser = Q.nbind(User.create, User);
 var updateUser = Q.nbind(User.findOneAndUpdate, User);
 
@@ -17,7 +18,7 @@ module.exports = {
 
   //temporary testing controller
   getAllTutors: function(req, res, nex) {
-    User.find({}, function(err, users) {
+    User.find({isTutor: true}, function(err, users) {
       res.send(users);  
     });
   },
@@ -66,6 +67,26 @@ module.exports = {
           res.send(tutor); 
         }
       });
+  },
+
+  search: function (req, res, next) {
+    var city = req.query.city;
+    var subjects = req.query.subjects;
+
+    console.log('Request queries: ', req.query);
+
+    var subjectsArr = subjects.split(',');
+
+    console.log('subjectsArr: ', subjectsArr);
+
+    findTutors({'location.city': city, 'subjects': { $in: subjectsArr }, 'isTutor': true })
+    .then(function(users) {
+      res.status(200).send(users);
+    })
+    .catch(function(err) {
+      res.status(500);
+      console.log ('Error: ', err);
+    });
   },
 
   saveProfile: function(req, res) {
@@ -127,6 +148,9 @@ module.exports = {
     var email = req.body.email;
     var password = req.body.password;
     var username = req.body.username;
+    var isTutor = req.body.isTutor;
+    var location = req.body.location;
+    var subjects = req.body.subjects;
 
     // check to see if user already exists
     findUser({email: email})
@@ -138,7 +162,10 @@ module.exports = {
           return createUser({
             username: username,
             email: email,
-            password: password
+            password: password,
+            isTutor: isTutor,
+            location: location,
+            subjects: subjects
           });
         }
       })
