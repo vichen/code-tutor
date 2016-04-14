@@ -1,11 +1,12 @@
 <div id="nav" ng-app='codellama.nav' ng-controller='NavController'>
   <ul>
     <li><a href='/#'>Home</a></li>
-    <li><a href='/#/login'>Login</a></li>
-    <li><a href='/#/signup'>Signup</a></li>
-    <li><a href='/#/update'>Update profile</a></li>
-    <li ng-show='loggedIn()'>Displays only if user is logged in<a href='/#/update'>Become a tutor</a></li>
+    <li ng-hide='loggedIn()'><a href='/#/login'>Login</a></li>
+    <li ng-hide='loggedIn()'><a href='/#/signup'>Signup</a></li>
+    <li ng-show='loggedIn()'><a href='/#/update'>Update profile</a></li>
+    <li ng-show='loggedIn()'><a href='/#/update'>Become a tutor</a></li>
   </ul>
+  <button ng-click="loggedIn()">click me</button>
 </div>
 
 <style>
