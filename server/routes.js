@@ -20,7 +20,7 @@ module.exports = function (app, express) {
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
 
-  // app.use('/api/users/profile', helpers.decode);
+  app.use('/update', helpers.decode);
   app.post('/api/users/profile', helpers.decode, multipartMiddleware, userController.saveProfile);
 
   
