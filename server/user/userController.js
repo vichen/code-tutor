@@ -70,22 +70,21 @@ module.exports = {
   },
 
   search: function (req, res, next) {
-    var cityUrl = req.query.city;
-    var subjectsUrl = req.query.subjects;
+    var city = req.query.city;
+    var subjects = req.query.subjects;
 
-    console.log('cityUrl ', cityUrl);
-    console.log('subjectsUrl ', subjectsUrl);
+    console.log('Request queries: ', req.query);
 
-    var city = cityUrl.replace(/\+/g, ' ');
-    var subjectsString = subjectsUrl.replace(/\+/g, ' ').replace(/\,\ /g, ',');
+    var subjectsArr = subjects.split(',');
 
-    var subjects = subjectsString.split(',');
+    console.log('subjectsArr: ', subjectsArr);
 
-    findTutors({'city': city, 'subjects': { '$in': subjects }, isTutor: true })
+    findTutors({'location.city': city, 'subjects': { $in: subjectsArr }, 'isTutor': true })
     .then(function(users) {
       res.status(200).send(users);
     })
     .catch(function(err) {
+      res.status(500);
       console.log ('Error: ', err);
     });
   },

@@ -14,7 +14,11 @@ angular.module('codellama.search', [])
       // make GET request to api (db) to get tutor data array
       return $http({
         method: 'GET',
-        url: '/api/search?city=' + parsedCity + '&subjects=' + parsedSubjects
+        url: '/api/tutor/search',
+        params: {
+          city: city,
+          subjects: subjects
+        }
       })
       .then(function (resp) {
         console.log(resp.data);
