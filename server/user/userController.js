@@ -70,7 +70,7 @@ module.exports = {
   },
 
   search: function (req, res, next) {
-    var city = req.query.city || 'San Francisco';
+    var city = req.query.city;
     var subjectsArr = req.query.subjects ? req.query.subjects.split(',') : null;
 
     var requirements = {

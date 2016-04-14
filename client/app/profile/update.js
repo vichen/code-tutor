@@ -12,9 +12,6 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
     'python', 
     'ruby'
   ];
-  // $scope.user = {
-  //   roles: []
-  // };
 
   $scope.cities = [
     'San Francisco',
@@ -32,7 +29,6 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
     
     file.upload = Upload.upload({
       url: 'api/users/profile',
-      // data: {name: $scope.name, city: $scope.city, email: $scope.email, bio: $scope.bio, file: file, isTutor: $scope.isTutor, subjects: $scope.user.roles}
       data: $scope.data
     });
 
