@@ -1,8 +1,10 @@
-angular.module('codellama.nav', ['Auth'])
+angular.module('codellama.nav', ['codellama.services'])
 
 .controller('NavController', function($scope, Auth) {
   $scope.data = 3;
   $scope.loggedIn = function() {
-    return Auth.isAuth();
+    var x = Auth.isAuth();
+    console.log(x);
+    return x;
   };
 });
