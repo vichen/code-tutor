@@ -13,12 +13,8 @@ var userSchema = new mongoose.Schema({
   address: Object,
   isTutor: Boolean,
   bio: String,
-<<<<<<< 6c869fb78fa0722cc72766732fd80f215e2e1e3d
-  subjects: Array
-=======
-  subjects: Object,
+  subjects: Array,
   imageId: String //a ref to the image file stored by gridfs
->>>>>>> images save to db, updateprofile working
 });
 
 
