@@ -121,6 +121,26 @@ module.exports = {
     }
   },
 
+  getImg: function(req, res, next) {
+    
+    var options = {
+      _id: req.params.objectId
+    };
+
+    gfs.exist(options, function(err, exists) {
+      if (!exists) {
+        res.status(404);
+        res.end();
+      } else {
+        var readstream = gfs.createReadStream(options);
+
+        res.set('Content-Type', 'image/jpeg');
+
+        readstream.pipe(res);
+      }
+    });
+  },
+
   signin: function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;

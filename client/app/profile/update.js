@@ -7,7 +7,7 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
     
     file.upload = Upload.upload({
       url: 'api/users/profile',
-      data: {name: $scope.name, email: $scope.email, bio: $scope.bio, file: file}
+      data: {name: $scope.name, email: $scope.email, bio: $scope.bio, file: file, isTutor: $scope.isTutor}
     });
 
     file.upload.then(function (response) {
