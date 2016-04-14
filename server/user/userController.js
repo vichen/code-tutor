@@ -2,10 +2,10 @@ var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var Grid = require('gridfs-stream');
-
+var fs = require('fs');
 var mongoose = require('mongoose');
+var Mongo = require('mongodb');
 Grid.mongo = mongoose.mongo;
-var gfs = Grid(mongoose.connection);
 
 
 // Promisify a few mongoose methods with the `q` promise library
@@ -90,31 +90,53 @@ module.exports = {
   },
 
   saveProfile: function(req, res) {
-    //user has been authenticated 
-
-    //find the user in the the db
-    var username = req.body.username;
-
-    if (req.files) {
-      //keep a reference tothe image in the user entry
-      req.body.imageLink = req.files.displayImage.name;
-
-      var writestream = gfs.createWriteStream({
-        filename: req.files.displayImage.name
+    // helpers.decode gives us the username from the token on this request
+    var update = function(req, res) {
+      updateUser({username: req.user.username}, req.body, {new: true}, function(err, doc) {
+        if (!err) {
+          res.send(doc);
+        }
       });
+    };
 
-      fs.createReadStream(req.files.displayImage.path).pipe(writestream);
+    //if a file is coming in with the update form, open a connection to gridfs
+    if (req.files.file) {
+      var id = new Mongo.ObjectID();
+      req.body.imageId = id;
+      var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
 
-      writestream.on('close', function (file) {
-        // do something with `file`
-        console.log('Photo written To DB');
-        res.redirect('back');
-      });
+      conn.once('open', function (req, res) {
+        var gfs = Grid(conn.db);
+        var writeStream = gfs.createWriteStream({
+          _id: id,
+          filename: req.files.file.name
+        });
+
+        writeStream.on('finish', update.bind(null, req, res));
+
+        fs.createReadStream(req.files.file.path).pipe(writeStream);
+      }.bind(null, req, res));
+    } else {
+      update(req, res);
     }
+  },
+
+  getImg: function(req, res, next) {
     
-    updateUser({username: username}, req.body, {new: true}, function(err, doc) {
-      if (!err) {
-        res.send(doc);
+    var options = {
+      _id: req.params.objectId
+    };
+
+    gfs.exist(options, function(err, exists) {
+      if (!exists) {
+        res.status(404);
+        res.end();
+      } else {
+        var readstream = gfs.createReadStream(options);
+
+        res.set('Content-Type', 'image/jpeg');
+
+        readstream.pipe(res);
       }
     });
   },

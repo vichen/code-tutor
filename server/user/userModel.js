@@ -13,7 +13,8 @@ var userSchema = new mongoose.Schema({
   address: Object,
   isTutor: Boolean,
   bio: String,
-  subjects: Array
+  subjects: Array,
+  imageId: String //a ref to the image file stored by gridfs
 });
 
 
