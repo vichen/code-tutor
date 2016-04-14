@@ -2,10 +2,10 @@ var Q = require('q');
 var jwt = require('jwt-simple');
 var User = require('./userModel.js');
 var Grid = require('gridfs-stream');
-
+var fs = require('fs');
 var mongoose = require('mongoose');
+var Mongo = require('mongodb');
 Grid.mongo = mongoose.mongo;
-var gfs = Grid(mongoose.connection);
 
 
 // Promisify a few mongoose methods with the `q` promise library
@@ -90,21 +90,35 @@ module.exports = {
   },
 
   saveProfile: function(req, res) {
-    updateUser({username: req.body.username}, req.body, {new: true}, function(err, doc) {
-      if (!err) {
-        res.send(doc);
-      }
-    });
-  },
-
-  saveProfilePic: function(req, res) {
-    fs.readFile(req.files.profilePic.path, function (err, data) {
-      // ...
-      var newPath = __dirname + "/uploads/uploadedFileName";
-      fs.writeFile(newPath, data, function (err) {
-        res.redirect("back");
+    // helpers.decode gives us the username from the token on this request
+    var update = function(req, res) {
+      updateUser({username: req.user.username}, req.body, {new: true}, function(err, doc) {
+        if (!err) {
+          res.send(doc);
+        }
       });
-    });
+    };
+
+    //if a file is coming in with the update form, open a connection to gridfs
+    if (req.files.file) {
+      var id = new Mongo.ObjectID();
+      req.body.imageId = id;
+      var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+
+      conn.once('open', function (req, res) {
+        var gfs = Grid(conn.db);
+        var writeStream = gfs.createWriteStream({
+          _id: id,
+          filename: req.files.file.name
+        });
+
+        writeStream.on('finish', update.bind(null, req, res));
+
+        fs.createReadStream(req.files.file.path).pipe(writeStream);
+      }.bind(null, req, res));
+    } else {
+      update(req, res);
+    }
   },
 
   signin: function (req, res, next) {

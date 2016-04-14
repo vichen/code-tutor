@@ -1,6 +1,8 @@
 var userController = require('./user/userController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 var path = require('path');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
 
 module.exports = function (app, express) {
   app.use(express.static('client'));
@@ -9,8 +11,6 @@ module.exports = function (app, express) {
   //   res.sendFile(path.join(__dirname, '/../public', 'index.html'));
   // });
    
-  app.post('api/users/profile', userController.saveProfile);
-  app.post('api/users/profilePic', userController.saveProfilePic);
 
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
@@ -20,6 +20,10 @@ module.exports = function (app, express) {
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
 
+  // app.use('/api/users/profile', helpers.decode);
+  app.post('/api/users/profile', helpers.decode, multipartMiddleware, userController.saveProfile);
+
+  
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
   app.use(helpers.errorLogger);
