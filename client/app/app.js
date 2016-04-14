@@ -5,6 +5,7 @@
     'codellama.search',
     'codellama.auth',
     'codellama.fileUpload',
+    'codellama.nav',
     'ngRoute'])
 
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -15,7 +16,7 @@
       })
       .when('/search', {
         templateUrl: 'app/search/searchResults.html',
-        // controller: 'SearchController'
+        controller: 'SearchController'
       })
 
       .when('/signup', {
