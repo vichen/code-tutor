@@ -23,7 +23,7 @@ module.exports = function (app, express) {
   // app.get('/tutor/:username');
   // app.get('/api/users/img/:objectId', userController.getImg);
 
-  // app.use('/update', helpers.decode);
+  app.use('/update', helpers.decode);
   app.post('/api/users/profile', helpers.decode, multipartMiddleware, userController.saveProfile);
 
   
