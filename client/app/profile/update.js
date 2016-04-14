@@ -10,7 +10,10 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
     'javascript', 
     'c', 
     'python', 
-    'ruby'
+    'ruby',
+    'angular',
+    'react',
+    'backbone'
   ];
 
   $scope.cities = [

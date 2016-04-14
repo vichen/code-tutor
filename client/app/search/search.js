@@ -21,7 +21,6 @@ angular.module('codellama.search', [])
         }
       })
       .then(function (resp) {
-        console.log(resp.data);
         return resp.data;
       });
     };
