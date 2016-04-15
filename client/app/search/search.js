@@ -26,6 +26,7 @@ angular.module('codellama.search', [])
 
   .controller('SearchController', function ($scope, SearchService, $location) {
 
+
     // define search on scope
     $scope.search = function(city, subjects) {
 
