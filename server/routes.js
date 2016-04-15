@@ -7,6 +7,9 @@ var multipartMiddleware = multipart();
 var rootPath = path.join(__dirname, '..');
 
 
+var rootPath = path.join(__dirname, '..');
+
+
 module.exports = function (app, express) {
   app.use(express.static('client'));
 
