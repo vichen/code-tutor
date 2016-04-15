@@ -128,18 +128,23 @@ module.exports = {
       _id: req.params.objectId
     };
 
-    gfs.exist(options, function(err, exists) {
-      if (!exists) {
-        res.status(404);
-        res.end();
-      } else {
-        var readstream = gfs.createReadStream(options);
+    var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
 
-        res.set('Content-Type', 'image/jpeg');
+    conn.once('open', function (req, res) {
+      var gfs = Grid(conn.db);
+      gfs.exist(options, function(err, exists) {
+        if (!exists) {
+          res.status(404);
+          res.end();
+        } else {
+          var readstream = gfs.createReadStream(options);
 
-        readstream.pipe(res);
-      }
-    });
+          res.set('Content-Type', 'image/jpeg');
+
+          readstream.pipe(res);
+        }
+      });
+    }.bind(null, req, res));
   },
 
   signin: function (req, res, next) {
