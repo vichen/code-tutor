@@ -2,6 +2,9 @@ var userController = require('./user/userController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 var path = require('path');
 
+var rootPath = path.join(__dirname, '..');
+
+
 module.exports = function (app, express) {
   app.use(express.static('client'));
 
@@ -22,6 +25,9 @@ module.exports = function (app, express) {
   app.post('/api/users/profile', userController.saveProfile);
   // app.post('/api/tutor/update', userController.updateProfile);
 
+  app.get('/*', function(req, res) {
+    res.sendFile(rootPath + '/client/index.html');
+  });
   
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
