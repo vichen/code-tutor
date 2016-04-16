@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var Mongo = require('mongodb');
 Grid.mongo = mongoose.mongo;
 
+var gfs;
+var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+conn.once('open', function (req, res) { gfs = Grid(conn.db); });
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
@@ -104,19 +107,14 @@ module.exports = {
     if (req.files.file) {
       var id = new Mongo.ObjectID();
       req.body.imageId = id;
-      var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+      var writeStream = gfs.createWriteStream({
+        _id: id,
+        filename: req.files.file.name
+      });
 
-      conn.once('open', function (req, res) {
-        var gfs = Grid(conn.db);
-        var writeStream = gfs.createWriteStream({
-          _id: id,
-          filename: req.files.file.name
-        });
+      writeStream.on('finish', update.bind(null, req, res));
 
-        writeStream.on('finish', update.bind(null, req, res));
-
-        fs.createReadStream(req.files.file.path).pipe(writeStream);
-      }.bind(null, req, res));
+      fs.createReadStream(req.files.file.path).pipe(writeStream);
     } else {
       update(req, res);
     }
@@ -128,23 +126,18 @@ module.exports = {
       _id: req.params.objectId
     };
 
-    var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+    gfs.exist(options, function(err, exists) {
+      if (!exists) {
+        res.status(404);
+        res.end();
+      } else {
+        var readstream = gfs.createReadStream(options);
 
-    conn.once('open', function (req, res) {
-      var gfs = Grid(conn.db);
-      gfs.exist(options, function(err, exists) {
-        if (!exists) {
-          res.status(404);
-          res.end();
-        } else {
-          var readstream = gfs.createReadStream(options);
+        res.set('Content-Type', 'image/jpeg');
 
-          res.set('Content-Type', 'image/jpeg');
-
-          readstream.pipe(res);
-        }
-      });
-    }.bind(null, req, res));
+        readstream.pipe(res);
+      }
+    });
   },
 
   signin: function (req, res, next) {
