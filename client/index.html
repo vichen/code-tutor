@@ -21,8 +21,20 @@
   </head>
   <body>
     <div id="container-head">
-      <div id="logo"><span>Code Tutor</span></div>
+      
       <!-- Nav goes here -->
+      <div id="cssmenu" ng-app='codellama.nav' ng-controller='NavController'>
+      <div id="logo"><span>Code Tutor</span></div>
+      <div id="nav-buttons">
+        <ul>
+          <li class="active"><a href='/#'><span>Home</span></a></li>
+          <li ng-show='loggedInNotTutor'><a href='/#/update'><span>Become a tutor</span></a></li>
+          <li ng-show='loggedInAndTutor'><a href='/#/update'><span>Update profile</span></a></li>
+          <li ng-show='!loggedIn'><a href='/#/login'><span>Login</span></a></li>
+          <li ng-show='!loggedIn'><a href='/#/signup'><span>Signup</span></a></li>
+        </ul>
+      </div>
+      </div>
       <!-- Sign in goes here -->
     </div>
 
@@ -34,6 +46,10 @@
     <!-- ////////////////////////////////// -->
     <!--     html dev. content goes here    -->
     <!-- ////////////////////////////////// -->
+
+    <!-- Footer... -->
+    <div id="container-footer"><span id="footer-text">~ Code Tutor 2016 ~</span>
+    </div>
 
     <!-- javascript -->
     <script src="lib/angular/angular.js"></script>
