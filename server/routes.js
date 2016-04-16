@@ -21,12 +21,12 @@ module.exports = function (app, express) {
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
   app.get('/api/tutor/search', userController.search);
-  app.get('/api/tutor/:username', userController.findTutor);
+  // app.get('/api/tutor/:username', userController.findTutor);
 
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
 
-  // app.get('/tutor/:username');
+  app.get('/tutor/:username', userController.findTutor);
   app.get('/api/users/img/:objectId', userController.getImg);
 
   app.use('/update', helpers.decode);

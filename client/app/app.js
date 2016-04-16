@@ -31,6 +31,10 @@
         templateUrl: 'app/profile/update.html',
         controller: 'uploadCtrl'
       })
+      .when('/tutor/:username', {
+        templateUrl: 'app/tutors/tutor.html',
+        controller: 'tutorController'
+      })
 
       .otherwise({
         redirectTo: '/'
