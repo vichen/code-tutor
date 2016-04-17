@@ -3,24 +3,22 @@
   <div id="search-results-title">Your Search results...</div>
 
   <!-- Search results entry -->
+  <div class="profile-text" ng-hide="subjectLength">Sorry, no matches!</div>
+
   <div class="container-tutor-card" ng-repeat="tutor in tutorData">
-    <a ng-href="/tutor/{{tutor.username}}" />
+    
     <div class="profile-box">
       <div class="profile-picture">
           <img ng-src="api/users/img/{{tutor.imageId}}" /></div>
 
           <button type="submit" class="profile-button" id="likes-button">Likes: {{tutor.likes}}</button>
       <div class="profile-content">
-        <div class="profile-text"><span id="tutor-name">{{tutor.name}}</span></div>
-        <!-- <div class="profile-text"><span id="tutor-username">{{tutor.username}}</span></div> -->
-        <div class="profile-text"><span id="tutor-bio">{{tutor.bio}}</span></div>
-        <div class="profile-text">
+        <div class="profile-text"><a ng-href="/tutor/{{tutor.username}}" /><span id="tutor-name">{{tutor.name}}</span></a></div>
 
-        <h4>Subjects:</h4>
-          <ul class="subject-list">
-            <li  ng-repeat="subject in tutor.subjects" ng-style="{'text-transform': 'capitalize'}">{{subject}}</li>
-          </ul>
-        </div>
+        <div class="profile-text"><span id="tutor-bio">{{tutor.bio}}</span></div>
+
+        <div id="tutor-subjects">{{tutor.subjects.join(', ')}}</div>
+
         <div class="profile-text"><span id="tutor-city">{{tutor.location.city}}</span></div>
         <button type="submit" class="profile-button" id="read-more-button">More info...</button>
 
@@ -28,7 +26,6 @@
         <a ng-href="mailto:{{tutor.email}}" target="_blank"><button class="profile-button" id="contact-tutor-button">Message tutor</button></a>
       </div>
     </div>
-    </a>
   </div>
 </div>
 
