@@ -26,43 +26,9 @@ module.exports = {
     });
   },
 
-  getTutor: function(req, res, nex) {
-    User.find({username: req.params.username}, function(err, user) {
-      res.send(user);
-    });
-
-    // extract image link
-    // send image back with POST??
-    // read image from user.imageLink...
-
-    //write content to file system
-        // var fs_write_stream = fs.createWriteStream('write.txt');
-         
-        // //read from mongodb
-        // var readstream = gfs.createReadStream({
-        //  filename: 'mongo_file.txt'
-        // });
-        // readstream.pipe(fs_write_stream);
-        // fs_write_stream.on('close', function () {
-        //  console.log('file has been written fully!');
-        // });
-
-        //another implementation
-        // var readstream = gridfs.createReadStream({
-        //   _id: req.params.fileId
-        // });
-        // req.on('error', function(err) {
-        //   res.send(500, err);
-        // });
-        // readstream.on('error', function (err) {
-        //   res.send(500, err);
-        // });
-        // readstream.pipe(res);
-
-  },
-
+  // return a tutor's profile
   findTutor: function(req, res, nex) {
-    findUser({name: req.params.name, isTutor: true})
+    findUser({username: req.params.username, isTutor: true})
       .then(function(tutor) {
         if (!tutor) {
           next( new Error('Invalid tutor'));
@@ -72,6 +38,7 @@ module.exports = {
       });
   },
 
+  // return tutors based on searchbar fields
   search: function (req, res, next) {
     var city = req.query.city;
     var subjectsArr = req.query.subjects ? req.query.subjects.split(',') : null;
@@ -93,6 +60,7 @@ module.exports = {
     });
   },
 
+  // updates a tutor's profile from /update
   saveProfile: function(req, res) {
     // helpers.decode gives us the username from the token on this request
     var update = function(req, res) {
@@ -120,6 +88,7 @@ module.exports = {
     }
   },
 
+  // get profile images
   getImg: function(req, res, next) {
     
     var options = {

@@ -1,0 +1,10 @@
+  <div ng-controller='TutorController'>
+    <p>Username: {{ tutor.username }} </p>
+    <h5>Name: {{tutor.name}}</h5>
+      <img ng-src="api/users/img/{{tutor.imageId}}">
+    <span>Knows: </span><br>
+    <ul ng-repeat="subject in tutor.subjects">
+      <li>- {{subject}}</li>
+    </ul>
+    <span>City: {{tutor.location.city}}</span><br>
+  </div>

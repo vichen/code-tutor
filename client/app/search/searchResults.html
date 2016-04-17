@@ -4,6 +4,7 @@
 
   <!-- Search results entry -->
   <div class="container-tutor-card" ng-repeat="tutor in tutorData">
+    <a ng-href="/tutor/{{tutor.username}}" />
     <div class="profile-box">
       <div class="profile-picture">
           <img ng-src="api/users/img/{{tutor.imageId}}" /></div>
@@ -18,6 +19,7 @@
         <button type="submit" class="profile-button" id="contact-tutor-button">Message tutor</button>
       </div>
     </div>
+    </a>
   </div>
 
 </div>

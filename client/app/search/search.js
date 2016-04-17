@@ -26,7 +26,6 @@ angular.module('codellama.search', [])
 
   .controller('SearchController', function ($scope, SearchService, $location) {
 
-
     // define search on scope
     $scope.search = function(city, subjects) {
 
@@ -48,8 +47,6 @@ angular.module('codellama.search', [])
 
   .controller('SearchResultsController', function ($scope, SearchService) {
 
-    $scope.tutorData = SearchService.tutorData;
-
     $scope.$watch(
       function() { return SearchService.tutorData; },
 
@@ -57,6 +54,7 @@ angular.module('codellama.search', [])
         $scope.tutorData = newVal;
       }
     );
+
     // console.log(SearchService.tutorData);
     // console.log('$search results scope.tutorData:', $scope.tutorData);
 
