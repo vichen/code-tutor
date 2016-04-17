@@ -190,6 +190,10 @@ a {
   text-transform: capitalize;
 }
 
+/*.subject-list > li {
+  text-transform: capitalize;
+}*/
+
 #tutor-bio {
   font-size: 1.1em;
   color: #777777;

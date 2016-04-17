@@ -7,6 +7,11 @@ angular.module('codellama.search', [])
     this.tutorData = [];
 
     this.getTutors = function(city, subjects) {
+<<<<<<< 320747d9e0bf0c6244a36f26f5f806f1bb2659f0
+=======
+      // parsing the strings will be handled sever-side
+      // TODO: sanitize inputs
+>>>>>>> city search is now case-insensitve
       
       return $http({
         method: 'GET',

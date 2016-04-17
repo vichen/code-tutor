@@ -64,8 +64,10 @@ module.exports = {
   saveProfile: function(req, res) {
     // helpers.decode gives us the username from the token on this request
     var update = function(req, res) {
+      console.log(req.body.subjects);
       if (req.body.subjects) { req.body.subjects = req.body.subjects.join(',').toLowerCase().split(/\W+/); }
-      if (req.body.city) { req.body.city = req.body.city.toLowerCase(); }
+      if (req.body.location.city) { req.body.location.city = req.body.location.city.toLowerCase(); }
+      console.log(req.body);
       updateUser({username: req.user.username}, req.body, {new: true}, function(err, doc) {
         if (!err) {
           res.send(doc);
