@@ -32,6 +32,8 @@
           <li ng-show='loggedInAndTutor'><a href='/#/update'><span>Update profile</span></a></li>
           <li ng-show='!loggedIn'><a href='/#/login'><span>Login</span></a></li>
           <li ng-show='!loggedIn'><a href='/#/signup'><span>Signup</span></a></li>
+          <li ng-show='loggedInAndTutor'><a href="/logout">Logout</a></li>
+          <li ng-show='loggedInNotTutor'><a href="/logout">Logout</a></li>
         </ul>
       </div>
       </div>
