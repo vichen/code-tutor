@@ -7,8 +7,6 @@ angular.module('codellama.search', [])
     this.tutorData = [];
 
     this.getTutors = function(city, subjects) {
-      parsedCity = city.replace(/\ /, '+');
-      parsedSubjects = subjects.replace(/\ /g, '+');
       
       return $http({
         method: 'GET',

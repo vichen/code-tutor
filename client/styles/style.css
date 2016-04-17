@@ -183,6 +183,11 @@ a {
 #tutor-subjects {
   font-size: 1.5em;
   color: #F89406;
+  text-transform: capitalize;
+}
+
+.subject-item {
+  text-transform: capitalize;
 }
 
 #tutor-bio {
@@ -193,6 +198,7 @@ a {
 #tutor-city {
   font-size: 1.5em;
   color: #F89406;
+  text-transform: capitalize;
 }
 
 .profile-text {
