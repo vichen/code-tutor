@@ -23,7 +23,7 @@
         <!-- TODO: add a like incrementer function -->
         <button type="submit" class="profile-button" id="likes-button">Likes: {{tutor.likes || 0}}</button>
 
-        <button type="submit" class="profile-button" id="read-more-button">More info...</button>
+        <a ng-href="/tutor/{{tutor.username}}" /><button type="submit" class="profile-button" id="read-more-button">More info...</button></a>
         <!-- TODO: need to hide this button if not logged in  -->
         <a ng-href="mailto:{{tutor.email}}" target="_blank"><button class="profile-button" id="contact-tutor-button">Message tutor</button></a>
         
