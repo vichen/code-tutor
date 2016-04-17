@@ -1,45 +1,23 @@
 <div class="container-tutor-profile" ng-controller="TutorController">
   <div class="profile-box-large">
     <div class="profile-picture-large">
-      <img ng-src="api/users/img/{{tutor.imageId}}" /></div>
+      <img ng-src="api/users/img/{{tutor.imageId}}" />
+      <button type="submit" class="profile-button" class="contact-tutor-button-large">Message tutor</button>
+      <button type="submit" class="profile-button" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+    </div>
+
+
     <div class="profile-content-large">
-      <div class="profile-text"><span id="tutor-name">{{tutor.name}}</span></div>
-      <div class="profile-text"><span id="username">{{ tutor.username }}</span></div>
-      <div class="profile-text"><span id="tutor-bio">Slow-carb small batch kogi aesthetic. Tilde scenester twee jean shorts, XOXO ennui yr. Swag knausgaard four loko, listicle gentrify vegan kickstarter man bun thundercats umami cred pabst williamsburg kitsch put a bird on it. Jean shorts fashion axe distillery next level. Butcher food truck occupy, yr etsy gastropub tumblr keytar sartorial taxidermy put a bird on it thundercats typewriter tattooed.<br><br>
-
-      Swag salvia VHS mumblecore, franzen try-hard twee tofu migas. Viral salvia leggings PBR&B, ethical vice wayfarers.<br><br>
-
-      Before they sold out letterpress godard vegan truffaut green juice. Freegan church-key ramps, viral hella beard mlkshk banh mi. Next level meggings pop-up health goth wolf mlkshk gochujang franzen, tote bag gastropub YOLO.
-
-      </span></div>
-      <!-- HOW IT SHOULD LOOK (I can't see code below on my laptop):
-      <div class="profile-text"><span id="tutor-subjects">Angular, React, HTML, CSS</span></div>
-      -->
+      <div class="profile-text"><span class="tutor-name">{{tutor.name}}</span></div>
+      <div class="profile-text"><span class="username">{{ tutor.username }}</span></div>
       <div class="profile-text">
-        <ul ng-repeat="subject in tutor.subjects" id="tutor-subjects">
-          <li>- {{subject}}</li>
-        </ul>
+        <span class="tutor-bio">{{tutor.bio}}</span>
       </div>
-      <div class="profile-text"><span id="tutor-city">{{tutor.location.city}}</span></div>
-
-      <button type="submit" class="profile-button" id="contact-tutor-button-large">Message tutor</button>
-      <button type="submit" class="profile-button" id="likes-button-large">Likes: 245</button>
+     
+      <div class="profile-text">
+        <div class="tutor-subjects">{{tutor.subjects.join(', ')}}</div>
+      </div>
+      <div class="profile-text"><span class="tutor-city">{{tutor.location.city}}</span></div>
     </div>
   </div>
 </div>
-
-
-<!-- Original Code...
-
-  <div ng-controller='TutorController'>
-    <p>Username: {{ tutor.username }} </p>
-    <h5>Name: {{tutor.name}}</h5>
-      <img ng-src="api/users/img/{{tutor.imageId}}">
-    <span>Knows: </span><br>
-    <ul ng-repeat="subject in tutor.subjects">
-      <li>- {{subject}}</li>
-    </ul>
-    <span>City: {{tutor.location.city}}</span><br>
-  </div>
-
-  -->

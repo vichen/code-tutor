@@ -20,23 +20,17 @@ Once the project moves into development, the press release can be used as a touc
 
 ### Interested in programming? Kickstart your career with a personal tutor. ###
 
-## Summary ##
 Code tutor is a convenient, efficient way to learn computer programming. 
 
-## Problem ##
 Thinking about a career change? A CS degree is expensive, and learning on your own can be slow without the proper coaching. Or mabe all you need is 30 minutes of guidance to help you get unstuck in your project.
 
-## Solution ##
-With CodeTutor, you get customized, in-person help from an industry professional. Our web app makes it easy to find the right person in your area to get you the help you need.
+With CodeTutor, you get customized, in-person help from an industry professional. Our site makes it easy to find the right person in your area to get you the help you need.
 
-## Quote from You ##
-"Here at CodeTutor, our "
+"" //quote from you
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+Visit CodeTutor.com to get started today!
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+"" // customer quote
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
