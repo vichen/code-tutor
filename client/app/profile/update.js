@@ -28,8 +28,8 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
   ];
 
   $scope.uploadPic = function(file) {
-    if (!file) { var file = {}; }
-    
+    if (!file) { var file = {}; } else { $scope.data.file = file; }
+        
     file.upload = Upload.upload({
       url: 'api/users/profile',
       data: $scope.data

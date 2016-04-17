@@ -6,30 +6,21 @@ var multipartMiddleware = multipart();
 
 var rootPath = path.join(__dirname, '..');
 
-
-var rootPath = path.join(__dirname, '..');
-
-
 module.exports = function (app, express) {
   app.use(express.static('client'));
-
-  // app.get('/', function(req, res) {
-  //   res.sendFile(path.join(__dirname, '/../public', 'index.html'));
-  // });
-   
 
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
   app.get('/api/tutor/search', userController.search);
-  app.get('/api/tutor/:username', userController.findTutor);
+  // app.get('/api/tutor/:username', userController.findTutor);
 
   app.post('/api/users/signup', userController.signup);
   app.post('/api/users/signin', userController.signin);
 
-  // app.get('/tutor/:username');
-  // app.get('/api/users/img/:objectId', userController.getImg);
+  app.get('/api/tutor/:username', userController.findTutor);
+  app.get('/api/users/img/:objectId', userController.getImg);
 
-  app.use('/update', helpers.decode);
+  // app.use('/update', helpers.decode);
   app.post('/api/users/profile', helpers.decode, multipartMiddleware, userController.saveProfile);
 
   app.get('/*', function(req, res) {

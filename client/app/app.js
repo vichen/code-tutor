@@ -26,29 +26,22 @@
       .when('/login', {
         templateUrl: 'app/auth/signin.html',
         controller: 'AuthController'
-      })
+      }) 
       .when('/update', {
         templateUrl: 'app/profile/update.html',
         controller: 'uploadCtrl'
+      })
+      .when('/tutor/:username', {
+        templateUrl: 'app/tutors/tutor.html',
+        controller: 'TutorController'
       })
 
       .otherwise({
         redirectTo: '/'
       });
-      // .when('/view1', {
-      //   templateUrl: 'partials/partial1',
-      //   controller: 'MyCtrl1'
-      // })
-      // .when('/view2', {
-      //   templateUrl: 'partials/partial2',
-      //   controller: 'MyCtrl2'
-      // })
-      // .otherwise({
-      //   redirectTo: '/view1'
-      // });
 
-        // We add our $httpInterceptor into the array
-        // of interceptors. Think of it like middleware for your ajax calls
+    // We add our $httpInterceptor into the array
+    // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
   })
     .factory('AttachTokens', function ($window) {

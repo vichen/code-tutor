@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var Mongo = require('mongodb');
 Grid.mongo = mongoose.mongo;
 
+var gfs;
+var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+conn.once('open', function (req, res) { gfs = Grid(conn.db); });
 
 // Promisify a few mongoose methods with the `q` promise library
 var findUser = Q.nbind(User.findOne, User);
@@ -23,43 +26,9 @@ module.exports = {
     });
   },
 
-  getTutor: function(req, res, nex) {
-    User.find({username: req.params.username}, function(err, user) {
-      res.send(user);
-    });
-
-    // extract image link
-    // send image back with POST??
-    // read image from user.imageLink...
-
-    //write content to file system
-        // var fs_write_stream = fs.createWriteStream('write.txt');
-         
-        // //read from mongodb
-        // var readstream = gfs.createReadStream({
-        //  filename: 'mongo_file.txt'
-        // });
-        // readstream.pipe(fs_write_stream);
-        // fs_write_stream.on('close', function () {
-        //  console.log('file has been written fully!');
-        // });
-
-        //another implementation
-        // var readstream = gridfs.createReadStream({
-        //   _id: req.params.fileId
-        // });
-        // req.on('error', function(err) {
-        //   res.send(500, err);
-        // });
-        // readstream.on('error', function (err) {
-        //   res.send(500, err);
-        // });
-        // readstream.pipe(res);
-
-  },
-
+  // return a tutor's profile
   findTutor: function(req, res, nex) {
-    findUser({name: req.params.name, isTutor: true})
+    findUser({username: req.params.username, isTutor: true})
       .then(function(tutor) {
         if (!tutor) {
           next( new Error('Invalid tutor'));
@@ -69,6 +38,7 @@ module.exports = {
       });
   },
 
+  // return tutors based on searchbar fields
   search: function (req, res, next) {
     var city = req.query.city;
     var subjectsArr = req.query.subjects ? req.query.subjects.split(',') : null;
@@ -90,6 +60,7 @@ module.exports = {
     });
   },
 
+  // updates a tutor's profile from /update
   saveProfile: function(req, res) {
     // helpers.decode gives us the username from the token on this request
     var update = function(req, res) {
@@ -104,24 +75,20 @@ module.exports = {
     if (req.files.file) {
       var id = new Mongo.ObjectID();
       req.body.imageId = id;
-      var conn = mongoose.createConnection('mongodb://localhost/codeLlama');
+      var writeStream = gfs.createWriteStream({
+        _id: id,
+        filename: req.files.file.name
+      });
 
-      conn.once('open', function (req, res) {
-        var gfs = Grid(conn.db);
-        var writeStream = gfs.createWriteStream({
-          _id: id,
-          filename: req.files.file.name
-        });
+      writeStream.on('finish', update.bind(null, req, res));
 
-        writeStream.on('finish', update.bind(null, req, res));
-
-        fs.createReadStream(req.files.file.path).pipe(writeStream);
-      }.bind(null, req, res));
+      fs.createReadStream(req.files.file.path).pipe(writeStream);
     } else {
       update(req, res);
     }
   },
 
+  // get profile images
   getImg: function(req, res, next) {
     
     var options = {
