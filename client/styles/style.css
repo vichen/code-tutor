@@ -183,6 +183,7 @@ a {
 #tutor-subjects {
   font-size: 1.5em;
   color: #F89406;
+  text-transform: capitalize;
 }
 
 #tutor-bio {
@@ -193,6 +194,7 @@ a {
 #tutor-city {
   font-size: 1.5em;
   color: #F89406;
+  text-transform: capitalize;
 }
 
 .profile-text {
@@ -236,21 +238,16 @@ a {
 }
 
 #likes-button {
-  position: absolute; 
-  bottom: 0px;
-  right: 252px;
+  float:right;
+  margin-right:50px;
 }
 
 #read-more-button {
-  position: absolute; 
-  right: 0px;
-  bottom: 0px;
+    float:right;
 }
 
 #contact-tutor-button {
-  position: absolute; 
-  right: 117px;
-  bottom: 0px;
+    float:right;
 }
 
 .profile-button {
@@ -265,7 +262,6 @@ a {
 
 .profile-button:hover {
   background-color: #F2784B !important;
-  position: absolute; 
 }
 
 .profile-button:focus {
