@@ -38,10 +38,6 @@ angular.module('codellama.services', [])
     return isLoggedIn() && $window.localStorage.getItem('isTutor') !== 'true';
   };
 
-  var signout = function () {
-    $window.localStorage.removeItem('com.codellama');
-    $location.path('/signin');
-  };
 
   return {
     signin: signin,

@@ -27,6 +27,15 @@
         templateUrl: 'app/auth/signin.html',
         controller: 'AuthController'
       }) 
+      .when('/logout', {
+        resolve: { 
+          logoutSuccess: function($location, $window, $route) {
+            $window.localStorage.clear();
+            $location.path('/');
+            $window.location.reload();
+          }
+        }
+      })
       .when('/update', {
         templateUrl: 'app/profile/update.html',
         controller: 'uploadCtrl'
@@ -35,7 +44,6 @@
         templateUrl: 'app/tutors/tutor.html',
         controller: 'TutorController'
       })
-
       .otherwise({
         redirectTo: '/'
       });

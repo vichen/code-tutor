@@ -44,6 +44,16 @@ angular.module('codellama.auth', [])
       });
   };
 
+})
+
+.controller('LogoutController', function($location, localStorageService) {
+  return localStorageService.remove('com.codellama');
+  $location.path('/');
 });
+
+
+
+
+
 
 
