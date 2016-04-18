@@ -6,10 +6,14 @@
   <div class="profile-text" ng-hide="subjectLength">Sorry, no matches!</div>
 
   <div class="container-tutor-card" ng-repeat="tutor in tutorData">
-    
+
     <div class="profile-box">
-      <div class="profile-picture">
-          <img ng-src="api/users/img/{{tutor.imageId}}" /></div>
+      <div class="profile-picture" ng-switch="tutor.imageId">
+
+          <img ng-switch-when="undefined" ng-src="../../defaultProfilePic.png" />
+          <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
+
+      </div>
 
       <div class="profile-content">
         <div class="profile-text"><a ng-href="/tutor/{{tutor.username}}" /><span class="tutor-name">{{tutor.name}}</span></a></div>
