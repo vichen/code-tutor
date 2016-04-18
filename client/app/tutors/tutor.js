@@ -13,12 +13,14 @@ angular.module('codellama.tutor', [])
       });
     };
 
-    this.likeTutor = function(current) {
-      var data = current++;
+    this.likeTutor = function(username) {
       return $http({
         method: 'PUT',
-        data: data,
+        data: {username: username},
         url: '/api/tutor/addLike'
+      })
+      .then(function(resp) {
+        return resp.data;
       });
     };
   })
@@ -29,7 +31,17 @@ angular.module('codellama.tutor', [])
       TutorService.tutorData = data;
     });
 
-    $scope.likeTutor = TutorService.likeTutor;
+    $scope.numLikes = 0;
+
+    $scope.likeTutor = function(username) {
+      TutorService.likeTutor(username)
+      .then(function(updatedLikes) {
+        $scope.numLikes = updatedLikes;
+      })
+      .catch(function(error) {
+        console.log('there was an error updating number of likes', error);
+      });
+    };
 
     $scope.$watch(
       function() { return TutorService.tutorData; },
