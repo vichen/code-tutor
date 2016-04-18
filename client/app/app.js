@@ -26,9 +26,9 @@
       .when('/login', {
         templateUrl: 'app/auth/signin.html',
         controller: 'AuthController'
-      }) 
+      })
       .when('/logout', {
-        resolve: { 
+        resolve: {
           logoutSuccess: function($location, $window, $route) {
             $window.localStorage.clear();
             $location.path('/');
@@ -72,8 +72,7 @@
     .run(function ($rootScope, $location, Auth) {
 
       $rootScope.loggedIn = Auth.isLoggedIn();
-      $rootScope.loggedInAndTutor = Auth.isLoggedInAndTutor();
-      $rootScope.loggedInNotTutor = Auth.isLoggedInButNotTutor();
+      $rootScope.isTutor = Auth.isLoggedInAndTutor();
 
       // here inside the run phase of angular, our services and controllers
       // have just been registered and our app is ready

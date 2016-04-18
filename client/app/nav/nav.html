@@ -5,8 +5,8 @@
     <li ng-class="{ active: isActive('/')}"><a href='/#'>Home</a></li>
     <li ng-class="{ active: isActive('/login')}" ng-show='!loggedIn'><a href='/#/login'>Login</a></li>
     <li ng-class="{ active: isActive('/signup')}" ng-show='!loggedIn'><a href='/#/signup'>Signup</a></li>
-    <li ng-class="{ active: isActive('/update')}" ng-show='loggedInAndTutor'><a href='/#/update'>Update profile</a></li>
-    <li ng-class="{ active: isActive('/update')}" ng-show='loggedInNotTutor'><a href='/#/update'>Become a tutor</a></li>
+    <li ng-class="{ active: isActive('/update')}" ng-show='loggedIn'><a href='/#/update'>Update profile</a></li>
+    <li ng-class="{ active: isActive('/update')}" ng-show='isTutor'><a href='/#/update'>Become a tutor</a></li>
     <li ng-show='loggedIn'><a href="/logout">Logout</a></li>
   </ul>
 </div>

@@ -18,12 +18,10 @@ angular.module('codellama.auth', [])
         // not yet tested on (real) users that are tutors
         if ($scope.user.isTutor === true) {
           $window.localStorage.setItem('isTutor', true);
-          $rootScope.loggedInAndTutor = true;
-          $rootScope.loggedInNotTutor = false;
+          $rootScope.loggedInButNotTutor = false;
         } else {
           $window.localStorage.setItem('isTutor', false);
-          $rootScope.loggedInAndTutor = false;
-          $rootScope.loggedInNotTutor = true;
+          $rootScope.loggedInButNotTutor = true;
         }
 
         $location.path('/');
