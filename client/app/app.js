@@ -48,6 +48,9 @@
         templateUrl: 'app/tutors/tutor.html',
         controller: 'TutorController'
       })
+      .when('/about', {
+        templateUrl: 'app/about/about.html'
+      })
       .otherwise({
         redirectTo: '/'
       });

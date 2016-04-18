@@ -586,4 +586,34 @@ button[disabled] {
   }
 }
 
+/* ---- about us ----- */
+.container-about {
+  margin: 60px auto;
+  padding:20px;
+  max-width: 800px;
+}
+
+.about-box {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  min-height: 350px;
+}
+
+.about-content {
+  padding: 30px 80px 30px 80px;
+  text-align: left;
+}
+
+#about-title {
+  font-size: 2.5em;
+  color: #777777;
+}
+
+#about-desc {
+  font-size: 1.5em;
+  color: #777777;
+  white-space: pre-wrap;
+}
+
 
