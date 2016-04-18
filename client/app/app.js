@@ -72,7 +72,7 @@
     .run(function ($rootScope, $location, Auth) {
 
       $rootScope.loggedIn = Auth.isLoggedIn();
-      $rootScope.isTutor = Auth.isLoggedInAndTutor();
+      $rootScope.isTutor = !Auth.isLoggedInButNotTutor();
 
       // here inside the run phase of angular, our services and controllers
       // have just been registered and our app is ready

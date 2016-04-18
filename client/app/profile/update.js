@@ -1,15 +1,15 @@
 //inject angular file upload directives and services.
 var app = angular.module('codellama.fileUpload', ['ngFileUpload', 'checklist-model']);
 
-app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', '$location', '$rootScope', function ($scope, Upload, $timeout, $location, $rootScope) {
   $scope.data = {};
   $scope.data.subjects = [];
   $scope.data.location = {};
 
   $scope.subjects = [
-    'Javascript', 
-    'C', 
-    'Python', 
+    'Javascript',
+    'C',
+    'Python',
     'Ruby',
     'Angular',
     'React',
@@ -31,7 +31,7 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
 
   $scope.uploadPic = function(file) { //uploads pic and/or new profile information
     if (!file) { var file = {}; } else { $scope.data.file = file; }
-        
+
     file.upload = Upload.upload({
       url: 'api/users/profile',
       data: $scope.data
@@ -41,6 +41,13 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
       $timeout(function () {
         file.result = response.data;
       });
+      // reset become tutor option, if a pic was uploaded
+      if (file) { // NOT WORKING
+        $rootScope.isTutor = true;
+      }
+      // redirect to home
+      $location.path('/');
+
     }, function (response) {
       if (response.status > 0) {
         $scope.errorMsg = response.status + ': ' + response.data;

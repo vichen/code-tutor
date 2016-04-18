@@ -25,20 +25,20 @@ angular.module('codellama.services', [])
   };
 
   /* Update logged-in and is-tutor status with these functions*/
-
+  /* Currently only called when app runs in app.js's .run */
   var isLoggedIn = function () {
     return !!$window.localStorage.getItem('com.codellama');
   };
 
-  var isLoggedInAndTutor = function() {
-    return isLoggedIn() && $window.localStorage.getItem('isTutor') !== 'false';
+  var isLoggedInButNotTutor = function() {
+    return isLoggedIn() && $window.localStorage.getItem('isTutor') === 'true';
   };
 
   return {
     signin: signin,
     signup: signup,
     isLoggedIn: isLoggedIn,
-    isLoggedInAndTutor: isLoggedInAndTutor,
+    isLoggedInButNotTutor: isLoggedInButNotTutor,
   };
 
 });
