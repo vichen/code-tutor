@@ -1,18 +1,38 @@
 <div class="container-tutor-profile" ng-controller="TutorController">
   <div class="profile-box-large">
     <div class="profile-picture-large" ng-switch="tutor.imageId">
-
       <img ng-switch-when="undefined" ng-src="../../defaultProfilePic.png" />
       <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
+    </div>
 
-      <button type="submit" class="profile-button" class="contact-tutor-button-large">Message tutor</button>
-      <button type="submit" class="profile-button" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+    <div class="buttons-container-large-profile">
+    <table>
+      <tr>
+        <td>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="large-profile-button blue">Username: {{ tutor.username }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" class="large-profile-button message" class="contact-tutor-button-large">Message tutor</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" class="large-profile-button likes" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+        </td>
+      </tr>
+    </table>
     </div>
 
 
     <div class="profile-content-large">
       <div class="profile-text"><span class="tutor-name">{{tutor.name}}</span></div>
-      <div class="profile-text"><span class="username">{{ tutor.username }}</span></div>
       <div class="profile-text">
         <span class="tutor-bio">{{tutor.bio}}</span>
       </div>

@@ -378,18 +378,35 @@ input[type="checkbox"]:focus{
 
 .card-buttons {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 2px;
+  right: 5px;
 }
 
 .profile-button {
   border: 0 none;
   padding: 12px 18px;
-  margin: 10px;
+  margin: 0px 8px 10px 0px;
   font-size: 1.1em;
   font-size: 14px;
   color: #fff;
   background-color: #F89406;
+}
+
+.large-profile-button {
+  border: 0 none;
+  padding: 12px 18px;
+  margin: 12px 8px 10px 25px;
+  font-size: 1.1em;
+  font-size: 14px;
+  color: #fff;
+  background-color: #F89406;
+}
+
+.buttons-container-large-profile {
+  position: absolute;
+  margin-top: 335px;
+  width: 300px;
+  height: auto;
 }
 
 .profile-button-update {
@@ -702,6 +719,30 @@ select:invalid {
   font-size: 1em;
   font-weight: 800;
   color: #fff;
+}
+
+.blue {
+  background-color: #81CFE0;
+}
+
+.message {
+  position: absolute;
+  top: 100px;
+}
+
+.likes {
+  position: absolute;
+  top: 40px;
+}
+
+.blue {
+  position: absolute;
+  top: -20px;
+}
+
+.city {
+  position: absolute;
+  top: -20px;
 }
 
 
