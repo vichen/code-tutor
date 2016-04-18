@@ -62,9 +62,14 @@ module.exports = {
 
   addLike: function(req, res) {
     // helpers.decode gives us the username of the person adding a "like" and ensures the requester has a valid token (signed in)
-    updateUser({username: req.body.username}, {$inc: {likes: 1}}, {new: true}, function(err, doc) {
-      if (!err) {
-        res.send({likes: doc.likes});
+    findUser({username: req.body.username})
+    .then(function(User) {
+      if (User.likers.indexOf(req.user.username) === -1) {
+        updateUser({username: req.body.username}, {$inc: {likes: 1}, $push: {likers: req.user.username}}, {new: true}, function(err, doc) {
+          if (!err) {
+            res.send({likes: doc.likes});
+          }
+        });
       }
     });
   },
