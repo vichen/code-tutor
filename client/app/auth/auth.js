@@ -36,7 +36,11 @@ angular.module('codellama.auth', [])
       .then(function (token) {
         $window.localStorage.setItem('com.codellama', token);
         $rootScope.loggedIn = true;
+        $window.localStorage.setItem('isTutor', false);
         $rootScope.isTutor = false;
+
+        console.log('$rootScope:', $rootScope.loggedIn, $rootScope.isTutor);
+
         $location.path('/');
       })
       .catch(function (error) {

@@ -9,7 +9,7 @@ angular.module('codellama.search', [])
     this.getTutors = function(city, subjects) {
       // parsing the strings will be handled sever-side
       // TODO: sanitize inputs
-      
+
       return $http({
         method: 'GET',
         url: '/api/tutor/search',
@@ -46,6 +46,16 @@ angular.module('codellama.search', [])
   })
 
   .controller('SearchResultsController', function ($scope, SearchService) {
+
+    $scope.tutor = {};
+    $scope.tutor.likes = 0;
+
+    $scope.clicked = function() {
+      console.log('clicked');
+      $scope.tutor.likes++;
+      console.log('$scope.tutor.likes is', $scope.tutor.likes);
+    };
+
     $scope.$watch(
       function() { return SearchService.tutorData; },
 
