@@ -1,53 +1,71 @@
-<div ng-controller="uploadCtrl">
-<h2>Update Your Profile</h2>
-  <form name="myForm">
-    <fieldset>
+<div class="container-tutor-profile" ng-controller="uploadCtrl">
+  <div class="page-title">
+    <span id="update-profile-title">Update your profile</span>
+  </div>
+  <div class="profile-box-large">
+    <form name="myForm">
+      <fieldset>   
+        <div id="tutor-update-question-container">
+          <span class="tutor-update-question">Are you a registered tutor or signing up to be a tutor? <br> Check here if yes... </span><input type="checkbox" class="checkbox checkbox-inline" ng-model="data.isTutor" />
+        </div>  
 
-      <br>Name:
-      <input type="text" name="name" ng-model="data.name" size="31">
+        <div> <!-- start of name-city-bio -->
+          <i class="tutor-update-question">Full Name (required)</i>
+          <input type="text" name="name" class="input-profile pass" placeholder="Full Name (required)" ng-model="data.name" size="31" required />
+          <i class="tutor-update-question">City (required)</i>
+          <select name="city" class="input-profile pass" ng-model="data.location.city" required>
+            <option ng-repeat="city in cities" value={{city}}>{{city}}</option>
+          </select>
 
+          <textarea ng-show="data.isTutor" type="textarea" name="bio" class="input-bio pass" ng-model="data.bio" rows="10" cols="50" placeholder="Please enter your bio here. This will be displayed on your public profile. Include your experience and areas of expertise if you are a tutor."></textarea>
+
+          <div id="tutor-update-subjects">
+            <span class="tutor-update-question">Select the subjects you </span>
+            <span class="tutor-update-question" ng-show="data.isTutor">want to teach</span>
+            <span class="tutor-update-question" ng-hide="data.isTutor">want to learn</span>
+          </div>
+
+          <label ng-repeat="subject in subjects"  class="update-subject-item">
+            <input type="checkbox" class="checkbox checkbox-inline" checklist-model="data.subjects" checklist-value="subject" ><span class="tutor-update-question"> {{subject}}
+          </span></label>
+        </div> <!-- end of name-city-bio -->
+
+        <div id="container-image-upload">
+          <div>
+            <span class="tutor-update-question">Upload a profile photo</span>
+          </div>
+
+          <div>
+            <input type="file" class="profile-button-update" id="photo-upload-button" ngf-select ng-model="picFile" name="file"    
+               accept="image/*" ngf-max-size="2MB"
+               ngf-model-invalid="errorFile">
+          </div>
+
+          <div>
+            <button ng-click="picFile = null" class="profile-button-update adjust grey" ng-show="picFile">Remove</button>
+          </div>
+
+          <div>
+            <button class="profile-button-update adjust" ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
+          </div>
+
+          <i class="tutor-update-question" ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+
+          <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+
+          <span class="progress" ng-show="picFile.progress >= 0">
+          <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
+          </span>
+
+          <div>
+            <span class="tutor-update-question" ng-show="picFile.result">Upload Successful</span>
+            <span class="tutor-update-question" class="err" ng-show="errorMsg">{{errorMsg}}</span>
+          </div>
+
+        </div> <!-- end of container-image-upload -->
+        
+      </fieldset>
       <br>
-      Email:
-      <input type="text" name="email" ng-model="data.email" size="31">
-
-      <br>
-      City:
-      <select name="city" ng-model="data.location.city" required>
-        <option ng-repeat="city in cities" value={{city}}>{{city}}</option>
-      </select>
-      <i ng-show="myForm.city.$error.required">*required</i><br>
-
-      <br>Bio:
-      <textarea type="textarea" name="bio" ng-model="data.bio" rows="10" cols="50"></textarea>
-
-      <br>Are you a tutor?:
-      <input type="checkbox" ng-model="data.isTutor">
-
-      <br>Languages:
-      <label ng-repeat="subject in subjects">
-        <input type="checkbox" checklist-model="data.subjects" checklist-value="subject"> {{subject}}
-      </label>
-
-      <!-- <i ng-show="myForm.email.$error.required">*required</i> -->
-      <br>Photo:
-      <input type="file" ngf-select ng-model="picFile" name="file"    
-             accept="image/*" ngf-max-size="2MB"
-             ngf-model-invalid="errorFile">
-      <!-- <i ng-show="myForm.file.$error.required">*required</i><br> -->
-      <i ng-show="myForm.file.$error.maxSize">File too large 
-          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
-      <br>
-      <button ng-disabled="!myForm.$valid" 
-              ng-click="uploadPic(picFile)">Submit</button>
-      <span class="progress" ng-show="picFile.progress >= 0">
-        <div style="width:{{picFile.progress}}%" 
-            ng-bind="picFile.progress + '%'"></div>
-      </span>
-      <span ng-show="picFile.result">Upload Successful</span>
-      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-      
-    </fieldset>
-    <br>
-  </form>
+    </form>
+  </div>
 </div>
