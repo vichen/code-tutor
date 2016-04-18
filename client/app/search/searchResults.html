@@ -30,8 +30,6 @@
           <a ng-href="/tutor/{{tutor.username}}" /><button type="submit" class="profile-button" class="read-more-button">More info...</button></a>
           <!-- TODO: need to hide this button if not logged in  -->
           <a ng-href="mailto:{{tutor.email}}" target="_blank"><button ng-disabled="!loggedIn" class="profile-button" class="contact-tutor-button">Message tutor</button></a>
-          <!-- TODO: add incrementer function to like button, hide without token present -->
-          <button ng-disabled="!loggedIn" type="submit" class="profile-button likes-button" ng-click="clicked()">Likes: {{tutor.likes}}</button>
         </div>
       </div>
     </div>

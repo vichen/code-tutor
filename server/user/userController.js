@@ -60,6 +60,20 @@ module.exports = {
     });
   },
 
+  addLike: function(req, res) {
+    // helpers.decode gives us the username of the person adding a "like" and ensures the requester has a valid token (signed in)
+    findUser({username: req.body.username})
+    .then(function(User) {
+      if (User.likers.indexOf(req.user.username) === -1 && req.body.username !== req.user.username) {
+        updateUser({username: req.body.username}, {$inc: {likes: 1}, $push: {likers: req.user.username}}, {new: true}, function(err, doc) {
+          if (!err) {
+            res.send({likes: doc.likes});
+          }
+        });
+      }
+    });
+  },
+
   // updates a tutor's profile from /update
   saveProfile: function(req, res) {
     // helpers.decode gives us the username from the token on this request
