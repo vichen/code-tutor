@@ -6,7 +6,7 @@
       <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
 
       <button type="submit" class="profile-button" class="contact-tutor-button-large">Message tutor</button>
-      <button type="submit" ng-click="likeTutor({{tutor.likes}})" class="profile-button" class="likes-button-large">Likes: {{numLikes}}</button>
+      <button type="submit" ng-click="likeTutor({{tutor.username}})" class="profile-button" class="likes-button-large">Likes: {{numLikes}}</button>
     </div>
 
 
