@@ -21,33 +21,12 @@
   </head>
   <body>
     <div id="container-head">
-      
-      <!-- Nav goes here -->
-      <div id="cssmenu" ng-app='codellama.nav' ng-controller='NavController'>
-      <div id="logo"><span>Code Tutor</span></div>
-      <div id="nav-buttons">
-        <ul>
-          <li class="active"><a href='/#'><span>Home</span></a></li>
-          <li ng-show='loggedInNotTutor'><a href='/#/update'><span>Become a tutor</span></a></li>
-          <li ng-show='loggedInAndTutor'><a href='/#/update'><span>Update profile</span></a></li>
-          <li ng-show='!loggedIn'><a href='/#/login'><span>Login</span></a></li>
-          <li ng-show='!loggedIn'><a href='/#/signup'><span>Signup</span></a></li>
-          <li ng-show='loggedInAndTutor'><a href="/logout">Logout</a></li>
-          <li ng-show='loggedInNotTutor'><a href="/logout">Logout</a></li>
-        </ul>
-      </div>
-      </div>
-      <!-- Sign in goes here -->
+      <div ng-include src=" 'app/nav/nav.html' "></div>
     </div>
 
     <!-- App  -->
-    <div ng-include src=" 'app/nav/nav.html' "></div>
     <div ng-include src="'app/search/searchBar.html'"></div>
     <div ng-view>
-
-    <!-- ////////////////////////////////// -->
-    <!--     html dev. content goes here    -->
-    <!-- ////////////////////////////////// -->
 
     <!-- Footer... -->
     <div id="container-footer">
@@ -84,10 +63,6 @@
     <script src="app/nav/nav.js"></script>
     <script src="app/app.js"></script>
 
-
-    <script type='text/javascript' id="__bs_script__">//<![CDATA[
-        document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.1.9.2.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
-    //]]></script>
   </body>
 </html>
 
