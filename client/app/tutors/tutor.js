@@ -1,3 +1,4 @@
+/* This module handles the tutor's profile view */
 angular.module('codellama.tutor', [])
 
   .service('TutorService', function($http) {
