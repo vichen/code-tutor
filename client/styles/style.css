@@ -6,6 +6,14 @@ body {
   text-align: center !important; /* !!! */
 }
 
+a {
+  color: #848482 !important;
+}
+
+h1 {
+  color: #848482 !important;
+}
+
 .adjust {
   margin-top: 6px !important;
 }
@@ -30,6 +38,7 @@ body {
 
 #footer-text:hover {
   text-decoration: underline;
+  color: #848482 !important;
 }
 
 #container-head {
@@ -79,6 +88,7 @@ body {
   margin-top: 30px;
   padding: 10px;
   width: 100%;
+  height: 200px;
   background-color: #E4F1FE;
 }
 
@@ -97,7 +107,7 @@ body {
   width: 75%;
   height: 50px;
   display: block;
-  margin: 20px auto 15px;
+  margin: 20px auto 30px;
   padding: 0 15px;
   border: none;
   border-bottom: 2px solid #ebebeb;
@@ -118,7 +128,7 @@ body {
   height: 50px;
   display: block;
   margin: 0 auto 15px;
-  padding: 0 15px;
+  padding: 15px;
   border: none;
   border-bottom: 2px solid #ebebeb;
 }
@@ -155,9 +165,9 @@ body {
 
 #container-search .input {
   width: 40%;
-  height: 30px;
+  /* height: 30px; */
   display: inline;
-  margin: 0 auto 15px;
+  margin: 8px 6px 20px;
   padding: 0 15px;
   border: none;
   border-bottom: 2px solid #ebebeb;
@@ -166,9 +176,23 @@ body {
 .searchButton {
   position: relative;
   width: 40%;
-  height: 20px;
+  height: 45px;
   display: inline;
   margin: 0;
+  color: white;
+  background-color: #F89406;
+  border: none;
+  -webkit-box-shadow: 0 5px 0 #F2784B;
+  -moz-box-shadow: 0 5px 0 #F2784B;
+  box-shadow: 0 5px 0 #F2784B;
+}
+
+.signinButton {
+  position: relative;
+  width: 50%;
+  height: 45px;
+  display: inline;
+  margin-bottom: 20px;
   color: white;
   background-color: #F89406;
   border: none;
@@ -204,7 +228,7 @@ body {
 }
 
 .container-tutor-profile {
-  margin: 60px auto;
+  margin: 0px auto;
   padding:20px;
   max-width: 800px;
 }
@@ -387,9 +411,10 @@ input[type=file] {
   display: inline;
 }
 
-button[disabled] {
+/*button[disabled] {
    background-color: #CCC;  //use your prefered color here
 }
+*/
 
 .profile-button:focus {
   outline: none;
@@ -428,10 +453,13 @@ button[disabled] {
 #container-footer{
   padding: 20px;
   width: 100%;
+  height: auto;
   background-color: #E4F1FE;
   position: relative;
+  /*
   bottom: 0px;
   left: 0px;
+  */
   display:flex;
   flex-direction: column;
 }
@@ -558,7 +586,7 @@ button[disabled] {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 100px) {
   #cssmenu ul li {
     float: none;
     display: block;
@@ -614,6 +642,66 @@ button[disabled] {
   font-size: 1.5em;
   color: #777777;
   white-space: pre-wrap;
+}
+
+#container-home {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 600px;
+  width: auto;
+  background: url(./../app/homepage/map.jpg) no-repeat center center fixed;
+  background-size: cover;
+  background-clip: border-box;
+}
+
+#home-testimonial {
+  font-size: 5em;
+  font-family: 'Lobster', cursive;
+  color: #F89406;
+  position: relative;
+  top:175px;
+  text-shadow: 3px 3px #ffffff;
+}
+
+select:invalid {
+  color: #808080;
+}
+
+.container-upload-title {
+  margin-bottom: 20px;
+}
+
+.subjects-table {
+  width: 30%;
+  margin: auto;
+  padding-left: 30px;
+}
+
+.subjects-table-entry {
+  text-align: left;
+}
+
+.subjects-list {
+  font-weight: 400;
+  color: gray;
+  font-size: 1.5em;
+}
+
+#photo-upload-container {
+  background-color: #DCDCDC;
+  width: 320px;
+  height: auto;
+  margin: auto;
+}
+
+#remove-underline:hover {
+  text-decoration: underline !important;
+}
+
+.photo-upload-info {
+  font-size: 1em;
+  font-weight: 800;
+  color: #fff;
 }
 
 

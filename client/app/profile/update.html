@@ -7,20 +7,19 @@
       <fieldset>
 
         <div id="tutor-update-question-container">
-          <span ng-switch-when="false" class="tutor-update-question">Would you like to become a tutor? <br> Check here if yes... </span>
-          <input ng-switch-when="false" type="checkbox" class="checkbox checkbox-inline" ng-model="data.isTutor" />
-          <span ng-switch-default="true" ng-init="data.isTutor=true " class="tutor-update-question">Thank you for contributing to the community as a tutor!</span>
-        </div>
+          <span class="tutor-update-question">Are you a registered tutor / signing up to be a tutor? <br> Check here if yes... </span><input type="checkbox" class="checkbox checkbox-inline" ng-model="data.isTutor" />
+        </div>  
 
         <div> <!-- start of name-city-bio -->
-          <i class="tutor-update-question">Full Name (required)</i>
+          <i class="tutor-update-question"></i>
           <input type="text" name="name" class="input-profile pass" placeholder="Full Name (required)" ng-model="data.name" size="31" required />
-          <i class="tutor-update-question">City (required)</i>
+          <i class="tutor-update-question"></i>
           <select name="city" class="input-profile pass" ng-model="data.location.city" required>
+            <option value="" disabled selected>Select a city (required)</option>
             <option ng-repeat="city in cities" value={{city}}>{{city}}</option>
           </select>
 
-          <textarea ng-show="data.isTutor" type="textarea" name="bio" class="input-bio pass" ng-model="data.bio" rows="10" cols="50" placeholder="Please enter your bio here. This will be displayed on your public profile. Include your experience and areas of expertise if you are a tutor."></textarea>
+          <textarea ng-show="data.isTutor" type="textarea" name="bio" class="input-bio pass" ng-model="data.bio" rows="10" cols="50" placeholder="Please tell us about yourself and your experience"></textarea>
 
           <div id="tutor-update-subjects">
             <span class="tutor-update-question">Select the subjects you </span>
@@ -28,42 +27,57 @@
             <span class="tutor-update-question" ng-hide="data.isTutor">want to learn</span>
           </div>
 
-          <label ng-repeat="subject in subjects"  class="update-subject-item">
-            <input type="checkbox" class="checkbox checkbox-inline" checklist-model="data.subjects" checklist-value="subject" ><span class="tutor-update-question"> {{subject}}
-          </span></label>
+          <div class="subjects-table">
+          <table>
+            <tr ng-repeat="subject in subjects" class="subjects-table-entry">
+            <td>
+              <label class="update-subject-item"> 
+                <input type="checkbox" class="checkbox checkbox-inline" checklist-model="data.subjects" checklist-value="subject" >
+                <span class="subjects-list"> {{subject}}</span>
+              </label>
+            <td>
+            </tr>
+          </table>
+          </div>
         </div> <!-- end of name-city-bio -->
 
         <div id="container-image-upload">
-          <div>
+          <div class="container-upload-title">
             <span class="tutor-update-question">Upload a profile photo</span>
           </div>
 
-          <div>
-            <input type="file" class="profile-button-update" id="photo-upload-button" ngf-select ng-model="picFile" name="file"
-               accept="image/*" ngf-max-size="2MB"
-               ngf-model-invalid="errorFile">
+          <div id="photo-upload-container">
+
+            <div>
+              <input type="file" class="profile-button-update grey" ngf-select ng-model="picFile" name="file"    
+                 accept="image/*" ngf-max-size="2MB"
+                 ngf-model-invalid="errorFile">
+            </div>
+
+            <i class="photo-upload-info" ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+
+            <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+
+            <span class="progress" ng-show="picFile.progress >= 0">
+            <div class="photo-upload-info" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
+            </span>
+
+            <div>
+              <button ng-click="picFile = null" class="profile-button-update grey" ng-show="picFile"><span id="remove-underline">Remove</span></button>
+            </div>
+
+            <div>
+              <span class="photo-upload-info" ng-show="picFile.result">Upload Successful</span>
+              <span class="photo-upload-info" class="err" ng-show="errorMsg">{{errorMsg}}</span>
+            </div>
+
           </div>
 
           <div>
-            <button ng-click="picFile = null" class="profile-button-update adjust grey" ng-show="picFile">Remove</button>
+            <button class="inputButton signinButton" ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">All done!</button>
           </div>
 
-          <div>
-            <button class="profile-button-update adjust" ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
-          </div>
 
-          <i class="tutor-update-question" ng-show="myForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-
-          <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
-
-          <span class="progress" ng-show="picFile.progress >= 0">
-          <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
-          </span>
-
-          <div>
-            <span class="tutor-update-question" ng-show="picFile.result">Upload Successful</span>
-            <span class="tutor-update-question" class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          </div>
 
         </div> <!-- end of container-image-upload -->
 
