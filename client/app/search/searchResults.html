@@ -10,7 +10,7 @@
     <div class="profile-box">
       <div class="profile-picture" ng-switch="tutor.imageId">
 
-          <img ng-switch-when="undefined" ng-src="../../nophoto.png" />
+          <img ng-switch-when="undefined" ng-src="../../default-user.jpg" />
           <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
 
       </div>
