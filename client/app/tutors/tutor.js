@@ -32,12 +32,10 @@ angular.module('codellama.tutor', [])
       TutorService.tutorData = data;
     });
 
-    $scope.numLikes = 0;
-
     $scope.likeTutor = function(username) {
       TutorService.likeTutor(username)
-      .then(function(updatedLikes) {
-        $scope.numLikes = updatedLikes;
+      .then(function(resp) {
+        $scope.tutor.likes = resp.likes;
       })
       .catch(function(error) {
         console.log('there was an error updating number of likes', error);
