@@ -1,7 +1,7 @@
 <div class="container-tutor-profile" ng-controller="TutorController">
   <div class="profile-box-large">
     <div class="profile-picture-large" ng-switch="tutor.imageId">
-      <img ng-switch-when="undefined" ng-src="../../defaultProfilePic.png" />
+      <img ng-switch-when="undefined" ng-src="../../nophoto.png" />
       <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
     </div>
 
