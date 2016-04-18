@@ -41,8 +41,8 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', '$location', '$win
       $timeout(function () {
         file.result = response.data;
       });
-      // reset become tutor option, if a pic was uploaded
-      if ($scope.picFile) { // NOT WORKING
+      // reset become tutor option, if the tutor form 'is tutor' checkbox is checked
+      if ($scope.data.isTutor) {
         $rootScope.isTutor = true;
         $window.localStorage.setItem('isTutor', true);
       }
