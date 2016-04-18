@@ -23,12 +23,10 @@
       </tr>
       <tr>
         <td>
-          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button likes" class="likes-button-large" ng-click="likeTutor({{tutor.username}})">Likes: {{tutor.likes || 0}}</button>
+          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button likes" class="likes-button-large" ng-click="likeTutor(tutor.username)">Likes: {{tutor.likes || 0}}</button>
         </td>
       </tr>
     </table>
-      <button type="submit" ng-click="likeTutor({{tutor.likes}})" class="profile-button" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
-      <button type="submit" ng-click="likeTutor({{tutor.likes}})" class="profile-button" class="likes-button-large">Likes: {{numLikes}}</button>
     </div>
 
 
