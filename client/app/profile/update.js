@@ -1,4 +1,4 @@
-//inject angular file upload directives and services.
+/* This module handles updating the profile, including photo upload, subjects, and cities */
 var app = angular.module('codellama.fileUpload', ['ngFileUpload', 'checklist-model']);
 
 app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', '$location', '$window', '$rootScope', function ($scope, Upload, $timeout, $location, $window, $rootScope) {
