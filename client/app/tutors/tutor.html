@@ -9,7 +9,6 @@
     <table>
       <tr>
         <td>
-
         </td>
       </tr>
       <tr>
@@ -24,7 +23,7 @@
       </tr>
       <tr>
         <td>
-          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button likes" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button likes" class="likes-button-large" ng-click="likeTutor({{tutor.likes}})">Likes: {{tutor.likes || 0}}</button>
         </td>
       </tr>
     </table>

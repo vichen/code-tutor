@@ -12,6 +12,15 @@ angular.module('codellama.tutor', [])
         return resp.data;
       });
     };
+
+    this.likeTutor = function(current) {
+      var data = current++;
+      return $http({
+        method: 'PUT',
+        data: data,
+        url: '/api/tutor/addLike'
+      });
+    };
   })
 
   .controller('TutorController', function ($scope, TutorService, $routeParams) {
@@ -19,6 +28,8 @@ angular.module('codellama.tutor', [])
     .then(function(data) {
       TutorService.tutorData = data;
     });
+
+    $scope.likeTutor = TutorService.likeTutor;
 
     $scope.$watch(
       function() { return TutorService.tutorData; },
