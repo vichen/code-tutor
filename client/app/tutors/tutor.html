@@ -5,6 +5,7 @@
       <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
     </div>
 
+<<<<<<< 1d0141bc140ef53d70f87209b24b0f84e5b0bdef
     <div class="buttons-container-large-profile">
     <table>
       <tr>
@@ -27,6 +28,10 @@
         </td>
       </tr>
     </table>
+=======
+      <button type="submit" class="profile-button" class="contact-tutor-button-large">Message tutor</button>
+      <button type="submit" ng-click="likeTutor({{tutor.likes}})" class="profile-button" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+>>>>>>> begin like-button implementation
     </div>
 
 
