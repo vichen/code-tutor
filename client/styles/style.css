@@ -1,5 +1,4 @@
 /* app css stylesheet */
-
 body {
   background-color: #81CFE0 !important;
   margin: 0px !important;
@@ -26,7 +25,6 @@ body {
   font-size: 1.5em;
   font-family: 'Lobster', cursive;
   color: #848482 !important;
-  top: 100px;
   margin: auto;
 }
 
@@ -300,8 +298,6 @@ input[type="checkbox"]:focus{
   height: 300px;
 }
 
-
-
 .profile-box-large .profile-picture-large {
   width:300px;
   position: absolute;
@@ -328,7 +324,6 @@ input[type="checkbox"]:focus{
   color: #fff;
   background-color: #81CFE0;
 }
-
 
 .profile-content {
   padding: 30px 80px 30px 350px;
@@ -420,13 +415,14 @@ button[disabled] {
 }
 
 #container-footer{
-  padding: 50px;
-  height: 300px;
+  padding: 20px;
   width: 100%;
   background-color: #E4F1FE;
   position: relative;
   bottom: 0px;
   left: 0px;
+  display:flex;
+  flex-direction: column;
 }
 
 /* -- nav -- */
