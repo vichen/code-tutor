@@ -19,12 +19,12 @@
       </tr>
       <tr>
         <td>
-          <button type="submit" class="large-profile-button message" class="contact-tutor-button-large">Message tutor</button>
+          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button message" class="contact-tutor-button-large">Message tutor</button>
         </td>
       </tr>
       <tr>
         <td>
-          <button type="submit" class="large-profile-button likes" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
+          <button type="submit" ng-disabled="!loggedIn" class="large-profile-button likes" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
         </td>
       </tr>
     </table>
