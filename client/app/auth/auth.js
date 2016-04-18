@@ -18,12 +18,10 @@ angular.module('codellama.auth', [])
         // not yet tested on (real) users that are tutors
         if ($scope.user.isTutor === true) {
           $window.localStorage.setItem('isTutor', true);
-          $rootScope.loggedInAndTutor = true;
-          $rootScope.loggedInNotTutor = false;
+          $rootScope.isTutor = true;
         } else {
           $window.localStorage.setItem('isTutor', false);
-          $rootScope.loggedInAndTutor = false;
-          $rootScope.loggedInNotTutor = true;
+          $rootScope.isTutor = false;
         }
 
         $location.path('/');
@@ -37,6 +35,8 @@ angular.module('codellama.auth', [])
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.codellama', token);
+        $rootScope.loggedIn = true;
+        $rootScope.isTutor = false;
         $location.path('/');
       })
       .catch(function (error) {
