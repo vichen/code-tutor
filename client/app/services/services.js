@@ -31,7 +31,7 @@ angular.module('codellama.services', [])
   };
 
   var isLoggedInButNotTutor = function() {
-    return isLoggedIn() && $window.localStorage.getItem('isTutor') === 'true';
+    return isLoggedIn() && $window.localStorage.getItem('isTutor') === true;
   };
 
   return {
