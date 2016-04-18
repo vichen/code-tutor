@@ -76,14 +76,17 @@ body {
 }
 
 #container-search {
-  margin-top: 44px;
+  margin-top: 30px;
   padding: 10px;
-  height: 280px;
   width: 100%;
   background-color: #E4F1FE;
 }
 
 #searchBar {
+  margin-top: 44px;
+  height: 60px;
+  width: 100%;
+  background-color: #E4F1FE;
   padding: 10px;
   margin: 20px auto;
   width: 65%;
@@ -141,23 +144,31 @@ body {
   position: relative;
   width: 85%;
   height: 50px;
-  display: block;
+  display: inline;
   margin: 30px auto 30px;
   color: white;
-  background-color: 
-  ;
   border: none;
   -webkit-box-shadow: 0 5px 0 #F2784B;
   -moz-box-shadow: 0 5px 0 #F2784B;
   box-shadow: 0 5px 0 #F2784B;
 }
 
+#container-search .input {
+  width: 40%;
+  height: 30px;
+  display: inline;
+  margin: 0 auto 15px;
+  padding: 0 15px;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+}
+
 .searchButton {
   position: relative;
-  width: 30%;
-  height: 50px;
-  display: block;
-  margin: 30px auto 30px;
+  width: 40%;
+  height: 20px;
+  display: inline;
+  margin: 0;
   color: white;
   background-color: #F89406;
   border: none;
