@@ -60,6 +60,15 @@ module.exports = {
     });
   },
 
+  addLike: function(req, res) {
+    // helpers.decode gives us the username of the person adding a "like" and ensures the requester has a valid token (signed in)
+    updateUser({username: req.body.username}, {$inc: {likes: 1}}, {new: true})
+      .then(function(user) {
+        console.log('new likes value is: ' + user.likes);
+        req.send(user.likes);
+      });
+  },
+
   // updates a tutor's profile from /update
   saveProfile: function(req, res) {
     // helpers.decode gives us the username from the token on this request
