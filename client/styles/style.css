@@ -7,6 +7,14 @@ body {
   text-align: center !important; /* !!! */
 }
 
+.adjust {
+  margin-top: 6px !important;
+}
+
+.grey {
+  background-color: #DCDCDC !important;
+}
+
 #logo {
   font-size: 2.5em;
   font-family: 'Lobster', cursive;
@@ -15,12 +23,15 @@ body {
 }
 
 #footer-text {
-  font-size: 3em;
+  font-size: 1.5em;
   font-family: 'Lobster', cursive;
-  color: #fff;
-  position: relative;
+  color: #848482 !important;
   top: 100px;
   margin: auto;
+}
+
+#footer-text:hover {
+  text-decoration: underline;
 }
 
 #container-head {
@@ -72,10 +83,6 @@ body {
   height: 280px;
   width: 100%;
   background-color: #E4F1FE;
-  /*
-  position: absolute;
-  top: 137px;
-  */
 }
 
 #searchBar {
@@ -83,6 +90,26 @@ body {
   margin: 20px auto;
   width: 65%;
   background-color: #E4F1FE;
+}
+
+.input-profile {
+  width: 75%;
+  height: 50px;
+  display: block;
+  margin: 20px auto 15px;
+  padding: 0 15px;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.input-bio {
+  width: 75%;
+  height: 200px;
+  display: block;
+  margin: 20px auto 15px;
+  padding: 0 15px;
+  border: none;
+  border: 2px solid #ebebeb;
 }
 
 .input {
@@ -94,13 +121,16 @@ body {
   border: none;
   border-bottom: 2px solid #ebebeb;
 }
+
 .input:focus {
   outline: none;
   border-bottom-color: #F89406 !important;
 }
+
 .input:hover {
   border-bottom-color: #dcdcdc;
 }
+
 .input:invalid {
   box-shadow: none;
 }
@@ -154,14 +184,10 @@ body {
   outline: none;
 }
 
-/* ---- */
-
-/*
-body {
-  font-family: Lato;
-  background: #bada55;
+.page-title {
+  margin-bottom: 20px;
+  border-bottom: none !important;
 }
-*/
 
 .container-tutor-card {
   margin: 25px auto;
@@ -169,16 +195,54 @@ body {
 }
 
 .container-tutor-profile {
-  margin: 25px auto;
-  width: 1000px;
+  margin: 60px auto;
+  padding:20px;
+  max-width: 800px;
 }
 
-/*
-a {
-  display: inline-block;
-  transition: all ease 0.3s;
+input[type="checkbox"]{
+  vertical-align: -2px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #DCDCDC;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 1px
+  box-sizing: content-box ;
+  width: 20px;
+  height: 20px;
+  border-width: 0;
+  transition: all .1s linear;
 }
-*/
+
+input[type="checkbox"]:checked{
+  background-color: #F89406;
+}
+
+input[type="checkbox"]:focus{
+  outline: 0 none;
+  box-shadow: none;
+}
+
+#tutor-update-question-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+#tutor-update-subjects {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.update-subject-item {
+  margin-right:20px;
+}
+
+#container-image-upload {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
 .tutor-name {
   font-size: 2.5em;
@@ -201,6 +265,11 @@ a {
   font-size: 1.5em;
   color: #F89406;
   text-transform: capitalize;
+}
+
+.tutor-update-question {
+  font-size: 1.5em;
+  color: #F89406;
 }
 
 .profile-text {
@@ -293,15 +362,42 @@ a {
   background-color: #F89406;
 }
 
-.profile-button:hover {
-  background-color: #F2784B !important;
+.profile-button-update {
+  border: 0 none;
+  padding: 12px 18px;
+  margin: 0px 5px 5px 5px;
+  font-size: 1.1em;
+  font-size: 14px;
+  color: #fff;
+  background-color: #F89406;
+}
+
+/*#photo-upload-button {
+  text-align: center !important;
+  margin:0;
+}*/
+
+input[type=file] {
+  display: inline;
+}
+
+button[disabled] {
+   background-color: #CCC;  //use your prefered color here
 }
 
 .profile-button:focus {
   outline: none;
 }
 
+.profile-button-update:focus {
+  outline: none;
+}
+
 .profile-button:active {
+  transform: translate(1px, 1px);
+}
+
+.profile-button-update:active {
   transform: translate(1px, 1px);
 }
 
@@ -311,6 +407,12 @@ a {
     text-align: center; 
 }
 
+#update-profile-title {
+    font-size: 2.5em;
+    color: #fff;
+    text-align: center;
+}
+
 .container-search-results{
   margin: 25px auto;
   margin-bottom: 70px !important;
@@ -318,7 +420,7 @@ a {
 }
 
 #container-footer{
-  padding: 10px;
+  padding: 50px;
   height: 300px;
   width: 100%;
   background-color: #E4F1FE;
@@ -476,3 +578,5 @@ a {
     display: none;
   }
 }
+
+

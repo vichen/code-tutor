@@ -7,13 +7,15 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
   $scope.data.location = {};
 
   $scope.subjects = [
-    'javascript', 
-    'c', 
-    'python', 
-    'ruby',
-    'angular',
-    'react',
-    'backbone'
+    'Javascript', 
+    'C', 
+    'Python', 
+    'Ruby',
+    'Angular',
+    'React',
+    'Backbone',
+    'HTML',
+    'CSS'
   ];
 
   $scope.cities = [
@@ -27,7 +29,7 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, 
     'Oakland'
   ];
 
-  $scope.uploadPic = function(file) {
+  $scope.uploadPic = function(file) { //uploads pic and/or new profile information
     if (!file) { var file = {}; } else { $scope.data.file = file; }
         
     file.upload = Upload.upload({
