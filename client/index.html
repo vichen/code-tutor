@@ -11,41 +11,21 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-
     <!-- Styles -->
-    <!-- NOTE: May need respond.js -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css"></link>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
 
   </head>
   <body>
-    <div id="container-head">
       <div ng-include src=" 'app/nav/nav.html' "></div>
-    </div>
 
     <!-- App  -->
     <div ng-include src="'app/search/searchBar.html'"></div>
-    <div ng-view>
+    <div ng-view></div>
 
     <!-- Footer... -->
-    <div id="container-footer">
-      <table align="center">
-        <tr>
-          <td><a href='/#'><span id="footer-text">Home</span></a></td>
-        </tr>
-        <tr>
-          <td><a href='/#/update'><span id="footer-text">Become a tutor</span></a></td>
-        </tr>
-        <tr>
-          <td><a href='/#/login'><span id="footer-text">Sign in</span></a></td>
-        </tr>
-        <tr>
-          <td><span id="footer-text">About Us</span></td>
-        </tr>
-      </table>
-    </div>
-
+    <div ng-include src="'app/footer/footer.html'"></div>
 
     <!-- javascript -->
     <script src="lib/angular/angular.js"></script>
@@ -62,6 +42,11 @@
     <script src="app/profile/update.js"></script>
     <script src="app/nav/nav.js"></script>
     <script src="app/app.js"></script>
+
+
+    <script type='text/javascript' id="__bs_script__">//<![CDATA[
+           document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.1.9.2.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
+       //]]></script>
 
   </body>
 </html>
