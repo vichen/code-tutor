@@ -1,7 +1,10 @@
 <div class="container-tutor-profile" ng-controller="TutorController">
   <div class="profile-box-large">
-    <div class="profile-picture-large">
-      <img ng-src="api/users/img/{{tutor.imageId}}" />
+    <div class="profile-picture-large" ng-switch="tutor.imageId">
+
+      <img ng-switch-when="undefined" ng-src="../../defaultProfilePic.png" />
+      <img ng-switch-default="tutor.imageId !== '' " ng-src="api/users/img/{{tutor.imageId}}" />
+
       <button type="submit" class="profile-button" class="contact-tutor-button-large">Message tutor</button>
       <button type="submit" class="profile-button" class="likes-button-large">Likes: {{tutor.likes || 0}}</button>
     </div>
@@ -13,7 +16,7 @@
       <div class="profile-text">
         <span class="tutor-bio">{{tutor.bio}}</span>
       </div>
-     
+
       <div class="profile-text">
         <div class="tutor-subjects">{{tutor.subjects.join(', ')}}</div>
       </div>
