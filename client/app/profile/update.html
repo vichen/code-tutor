@@ -3,11 +3,14 @@
     <span id="update-profile-title">Update your profile</span>
   </div>
   <div class="profile-box-large">
-    <form name="myForm">
-      <fieldset>   
+    <form name="myForm" ng-switch="isTutor">
+      <fieldset>
+
         <div id="tutor-update-question-container">
-          <span class="tutor-update-question">Are you a registered tutor or signing up to be a tutor? <br> Check here if yes... </span><input type="checkbox" class="checkbox checkbox-inline" ng-model="data.isTutor" />
-        </div>  
+          <span ng-switch-when="false" class="tutor-update-question">Would you like to become a tutor? <br> Check here if yes... </span>
+          <input ng-switch-when="false" type="checkbox" class="checkbox checkbox-inline" ng-model="data.isTutor" />
+          <span ng-switch-default="true" ng-init="data.isTutor=true " class="tutor-update-question">Thank you for contributing to the community as a tutor!</span>
+        </div>
 
         <div> <!-- start of name-city-bio -->
           <i class="tutor-update-question">Full Name (required)</i>
@@ -36,7 +39,7 @@
           </div>
 
           <div>
-            <input type="file" class="profile-button-update" id="photo-upload-button" ngf-select ng-model="picFile" name="file"    
+            <input type="file" class="profile-button-update" id="photo-upload-button" ngf-select ng-model="picFile" name="file"
                accept="image/*" ngf-max-size="2MB"
                ngf-model-invalid="errorFile">
           </div>
@@ -63,7 +66,7 @@
           </div>
 
         </div> <!-- end of container-image-upload -->
-        
+
       </fieldset>
       <br>
     </form>

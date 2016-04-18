@@ -30,6 +30,17 @@ app.controller('uploadCtrl', ['$scope', 'Upload', '$timeout', '$location', '$win
   ];
 
   $scope.uploadPic = function(file) { //uploads pic and/or new profile information
+
+    // data.isTutor is assigned conditionally in update.html
+    // but we want it to be default true for becometutor.html
+    // console.log('$scope.data.isTutor is',$scope.data.isTutor);
+    // if ($scope.data.isTutor === undefined) {
+    //   $scope.data.isTutor = true;
+    // }
+    console.log('$scope.data.isTutor is',$scope.data.isTutor);
+
+    // $scope.data.isTutor = $scope.data.isTutor || true;
+
     if (!file) { var file = {}; } else {  $scope.data.file = file;  }
 
     file.upload = Upload.upload({
