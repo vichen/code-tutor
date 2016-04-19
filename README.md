@@ -40,7 +40,6 @@ See demoBackUp_readme.md for details
 - `gulp task`
 - `gulp start`
 
-## Contributing
 
 ## Future directions
 - Integrate Google Maps
@@ -52,4 +51,5 @@ See demoBackUp_readme.md for details
 - Improve token authentication system
 - Use https
 
+## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
