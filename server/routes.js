@@ -7,7 +7,7 @@ var multipartMiddleware = multipart();
 var rootPath = path.join(__dirname, '..');
 
 module.exports = function (app, express) {
-  app.use(express.static('client'));
+  app.use(express.static(__dirname + '/client'));
 
   // temporary path for testing: get all tutors in db
   app.get('/api/tutor/all', userController.getAllTutors);
