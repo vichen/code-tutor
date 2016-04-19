@@ -8,6 +8,7 @@ angular.module('codellama.search', [])
 
     this.getTutors = function(city, subjects) {
       // parsing the strings will be handled sever-side
+      // TODO: sanitize inputs
 
       return $http({
         method: 'GET',
