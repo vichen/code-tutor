@@ -1,5 +1,3 @@
-# Project Name #
-
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -26,11 +24,9 @@ Thinking about a career change? A CS degree is expensive, and learning on your o
 
 With CodeTutor, you get customized, in-person help from an industry professional. Our site makes it easy to find the right person in your area to get you the help you need.
 
-"" //quote from you
 
 ## How to Get Started ##
 Visit CodeTutor.com to get started today!
 
-"" // customer quote
 
 
