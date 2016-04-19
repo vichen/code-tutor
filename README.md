@@ -32,6 +32,8 @@ sudo npm install -g bower
 npm install
 ```
 
+`npm install` will chain `bower install` and install bower client-side dependencies within the client/lib directory
+
 To load example data on a running instance of mongodb...
 `mongorestore -d <nameOfDatabase>  <pathToDump>`
 See demoBackUp_readme.md for details
