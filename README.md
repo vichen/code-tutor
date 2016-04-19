@@ -43,13 +43,14 @@ See demoBackUp_readme.md for details
 
 ## Future directions
 - Integrate Google Maps
-- Scheduling for both tutor and normal accounts
+- Scheduling for both tutor and normals accounts
 - Handle images on front end (resize, crop)
 - Secure messaging between accounts
 - Add OAuth
 - Allow signin with username
 - Improve token authentication system
 - Use https
+- Stream images directly from the request POST to GridFS
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
